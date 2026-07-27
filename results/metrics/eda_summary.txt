@@ -1,0 +1,15 @@
+============================================================
+EXPLORATORY DATA ANALYSIS (EDA) METRICS SUMMARY REPORT
+============================================================
+
+Project Title: An Intelligent Decision Support System for Retail Sales Forecasting
+Dataset      : Kaggle Store Item Demand Forecasting dataset
+
+1. Total Cumulative Sales        : 47,704,512 units
+2. Average Daily Sales Volume    : 26,125.14 units/day
+3. Highest Performing Store      : Store 2 (Cumulative Sales: 6,120,128 units)
+4. Highest Selling Product Item  : Item 15 (Cumulative Sales: 1,607,442 units)
+5. Peak Seasonality Month        : July (Month ID: 7)
+6. Peak Sales Volume Year        : 2017
+
+============================================================

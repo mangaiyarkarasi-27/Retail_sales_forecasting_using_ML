@@ -1,0 +1,64 @@
+================================================================================
+TIME-SERIES CROSS-VALIDATION REPORT (WALK-FORWARD VALIDATION)
+================================================================================
+
+1. METHODOLOGY & LEAKAGE PREVENTION
+-----------------------------------
+- Validation Method: sklearn.model_selection.TimeSeriesSplit (5 Folds)
+- Chronological Order: Strictly preserved across all folds
+- Data Leakage Prevention: Zero future observations were present in the training 
+  partitions of previous folds. Lag & rolling features were pre-computed per 
+  store-item group prior to expansion-window splitting.
+
+2. FOLD WINDOW SPECIFICATIONS
+-----------------------------
+        Model  Candidate  Fold Train_Start  Train_End  Val_Start    Val_End  Val_MAE  Val_RMSE
+Random Forest          1     1  2013-01-31 2013-09-27 2013-09-27 2014-05-24   5.6167    7.3222
+Random Forest          1     2  2013-01-31 2014-05-24 2014-05-24 2015-01-19   6.1168    7.9873
+Random Forest          1     3  2013-01-31 2015-01-19 2015-01-19 2015-09-15   6.1447    8.0361
+Random Forest          1     4  2013-01-31 2015-09-15 2015-09-15 2016-05-12   5.9296    7.7614
+Random Forest          1     5  2013-01-31 2016-05-12 2016-05-12 2017-01-06   6.5776    8.5760
+Random Forest          2     1  2013-01-31 2013-09-27 2013-09-27 2014-05-24   5.6106    7.3149
+Random Forest          2     2  2013-01-31 2014-05-24 2014-05-24 2015-01-19   6.1003    7.9602
+Random Forest          2     3  2013-01-31 2015-01-19 2015-01-19 2015-09-15   6.1331    8.0209
+Random Forest          2     4  2013-01-31 2015-09-15 2015-09-15 2016-05-12   5.9241    7.7537
+Random Forest          2     5  2013-01-31 2016-05-12 2016-05-12 2017-01-06   6.5714    8.5680
+Random Forest          3     1  2013-01-31 2013-09-27 2013-09-27 2014-05-24   5.6573    7.3669
+Random Forest          3     2  2013-01-31 2014-05-24 2014-05-24 2015-01-19   6.0388    7.8748
+Random Forest          3     3  2013-01-31 2015-01-19 2015-01-19 2015-09-15   6.0301    7.8674
+Random Forest          3     4  2013-01-31 2015-09-15 2015-09-15 2016-05-12   5.7451    7.4889
+Random Forest          3     5  2013-01-31 2016-05-12 2016-05-12 2017-01-06   6.4084    8.3400
+      XGBoost          1     1  2013-01-31 2013-09-27 2013-09-27 2014-05-24   5.5374    7.2093
+      XGBoost          1     2  2013-01-31 2014-05-24 2014-05-24 2015-01-19   5.9351    7.7463
+      XGBoost          1     3  2013-01-31 2015-01-19 2015-01-19 2015-09-15   6.0225    7.8690
+      XGBoost          1     4  2013-01-31 2015-09-15 2015-09-15 2016-05-12   5.6957    7.4044
+      XGBoost          1     5  2013-01-31 2016-05-12 2016-05-12 2017-01-06   6.3694    8.3001
+      XGBoost          2     1  2013-01-31 2013-09-27 2013-09-27 2014-05-24   5.5409    7.2132
+      XGBoost          2     2  2013-01-31 2014-05-24 2014-05-24 2015-01-19   5.9320    7.7417
+      XGBoost          2     3  2013-01-31 2015-01-19 2015-01-19 2015-09-15   6.0083    7.8528
+      XGBoost          2     4  2013-01-31 2015-09-15 2015-09-15 2016-05-12   5.6930    7.4044
+      XGBoost          2     5  2013-01-31 2016-05-12 2016-05-12 2017-01-06   6.3702    8.3040
+      XGBoost          3     1  2013-01-31 2013-09-27 2013-09-27 2014-05-24   5.5544    7.2300
+      XGBoost          3     2  2013-01-31 2014-05-24 2014-05-24 2015-01-19   5.8834    7.6775
+      XGBoost          3     3  2013-01-31 2015-01-19 2015-01-19 2015-09-15   5.9619    7.7858
+      XGBoost          3     4  2013-01-31 2015-09-15 2015-09-15 2016-05-12   5.6180    7.2988
+      XGBoost          3     5  2013-01-31 2016-05-12 2016-05-12 2017-01-06   6.2896    8.1857
+
+3. HYPERPARAMETER OPTIMIZATION OUTCOMES
+---------------------------------------
+A. Random Forest Regressor:
+   - Best Hyperparameters: {'n_estimators': 50, 'max_depth': 15, 'min_samples_split': 2, 'min_samples_leaf': 1}
+   - Average Validation MAE (Across 5 Folds): 5.9759
+   - Average Validation RMSE (Across 5 Folds): 7.7876
+
+B. XGBoost Regressor:
+   - Best Hyperparameters: {'n_estimators': 50, 'learning_rate': 0.1, 'max_depth': 8, 'subsample': 1.0, 'colsample_bytree': 0.8, 'reg_alpha': 0.1, 'reg_lambda': 1.0}
+   - Average Validation MAE (Across 5 Folds): 5.8615
+   - Average Validation RMSE (Across 5 Folds): 7.6355
+
+4. CONCLUSION
+-------------
+XGBoost Regressor achieved the lowest average validation MAE (5.8615) 
+across the 5 walk-forward folds. Both models were subsequently retrained on the complete 
+80% training partition using these optimal hyperparameters before final out-of-sample test set evaluation.
+================================================================================

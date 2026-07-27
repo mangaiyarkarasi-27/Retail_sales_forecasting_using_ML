@@ -1,0 +1,49 @@
+========================================================================
+E-IDSS STATISTICAL VALIDATION & EVALUATION REPORT
+========================================================================
+
+Sample Size (Nodes)          : 500 Store-Item Combinations
+Confidence Level             : 95.0%
+
+1. DECISION SCORE PROPERTIES:
+-----------------------------
+ * Mean Decision Score       : 44.8619
+ * Median Decision Score     : 44.6550
+ * Standard Deviation        : 8.4091
+ * 95% Confidence Interval   : (44.1230, 45.6007)
+
+2. RISK SCORE PROPERTIES:
+-------------------------
+ * Mean Risk Score           : 41.1122
+ * Median Risk Score         : 39.6800
+ * Standard Deviation        : 22.7431
+ * 95% Confidence Interval   : (39.1139, 43.1105)
+
+3. BUSINESS DECISION CATEGORIES DISTRIBUTION:
+---------------------------------------------
+ * Stable Demand            : 209  nodes (41.80%)
+ * Strategic Monitoring     : 99   nodes (19.80%)
+ * Declining Demand         : 96   nodes (19.20%)
+ * Overstock Risk           : 81   nodes (16.20%)
+ * Growth Opportunity       : 15   nodes (3.00%)
+
+4. PRIORITY LEVELS DISTRIBUTION:
+--------------------------------
+ * Medium Priority          : 400  nodes (80.00%)
+ * High Priority            : 50   nodes (10.00%)
+ * Low Priority             : 50   nodes (10.00%)
+
+5. RISK EXPOSURE LEVELS DISTRIBUTION:
+-------------------------------------
+ * Low Risk                 : 180  nodes (36.00%)
+ * Medium Risk              : 140  nodes (28.00%)
+ * High Risk                : 116  nodes (23.20%)
+ * Critical Risk            : 64   nodes (12.80%)
+
+6. KEY METRIC SUMMARY:
+----------------------
+ * High/Critical Risk Items  : 36.00%
+ * Growth Opportunity Items  : 3.00%
+ * Stable Demand Items       : 41.80%
+
+========================================================================

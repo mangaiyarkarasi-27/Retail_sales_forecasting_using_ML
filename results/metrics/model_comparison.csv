@@ -1,0 +1,6 @@
+Model,MAE,RMSE,R2,MAPE
+Linear Regression,6.991,9.1427,0.9163,14.2754
+Support Vector Regression,6.9909,9.1426,0.9163,14.2741
+ARIMA,13.572,18.7118,0.6495,22.2664
+Random Forest Regressor,6.4993,8.5032,0.9276,13.2077
+XGBoost Regressor,6.2698,8.1708,0.9332,12.7947

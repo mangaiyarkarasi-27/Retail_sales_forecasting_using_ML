@@ -1,0 +1,26 @@
+========================================================================
+SYSTEM ABLATION STUDY: EVALUATION OF DECOUPLED CAPABILITIES
+========================================================================
+
+1. COMPARATIVE CAPABILITY MATRIX:
+---------------------------------
+ System Stage Configuration                           | Explain | Biz Intel | Decision | Value    
+ --------------------------------------------------------------------------------------------
+ A. Forecasting Only (Standard ML)                    | None    | Low       | Low      | Baseline 
+ B. Forecasting + SHAP (XAI ML)                       | Global  | Medium    | Low      | Incremental
+ C. Forecasting + SHAP + Recommendations (Rule DSS)   | Global  | Medium    | Medium   | Moderate 
+ D. Complete E-IDSS (Decision Intelligence)           | Local   | High      | High     | Maximal  
+
+2. ABLATION DISCUSSION:
+-----------------------
+ * Stage A (Forecasting Only) yields raw numbers but offers no trust or business logic,
+   limiting operational value since operators cannot evaluate why values are predicted.
+ * Stage B adds global explainability, highlighting model coefficients but offering no local,
+   actionable advice on specific store-item nodes.
+ * Stage C integrates rule-based support, which flags decisions but lacks prioritization.
+   The system suffers from 'alarm fatigue' as multiple nodes are flagged simultaneously.
+ * Stage D (Complete E-IDSS) represents the full framework. By synthesizing scores, priority ranks,
+   and risk metrics, the system enables strategic capital allocation, targeting only high-confidence
+   opportunities and isolating high-risk nodes.
+
+========================================================================

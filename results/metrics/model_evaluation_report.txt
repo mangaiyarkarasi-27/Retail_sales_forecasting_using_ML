@@ -1,0 +1,52 @@
+================================================================================
+RETAIL SALES FORECASTING MODEL EVALUATION REPORT
+================================================================================
+
+1. EXPERIMENTAL SETUP & INTEGRITY
+---------------------------------
+All five candidate models (Linear Regression, Support Vector Regression, ARIMA, 
+Random Forest Regressor, and XGBoost Regressor) were evaluated under 100% 
+identical experimental conditions to eliminate evaluation inconsistencies:
+
+- Dataset Source: data/processed_train.csv (913,000 observations across 10 stores & 50 items)
+- Preprocessing Pipeline: Identical outlier clipping, standard scaling, and one-hot/ordinal encoding
+- Feature Engineering: Identical multi-period lag indicators (sales_lag_7, 14, 30) 
+  and rolling mean statistics (rolling_mean_7, 30) computed per store-item group
+- Chronological Split: Identical 80% train (718,400 samples) vs 20% test (179,600 samples)
+- Target Scale: All models were evaluated directly on original sales quantities (units)
+- Evaluation Metrics: MAE, RMSE, R², and MAPE computed on identical test samples
+
+2. MODEL PERFORMANCE BENCHMARK SUMMARY
+--------------------------------------
+                    Model     MAE    RMSE     R2    MAPE
+        Linear Regression  6.9910  9.1427 0.9163 14.2754
+Support Vector Regression  6.9909  9.1426 0.9163 14.2741
+                    ARIMA 13.5720 18.7118 0.6495 22.2664
+  Random Forest Regressor  6.4993  8.5032 0.9276 13.2077
+        XGBoost Regressor  6.2698  8.1708 0.9332 12.7947
+
+3. SELECTION CRITERIA & OUTCOME
+-------------------------------
+- Best Model Selected: XGBoost Regressor
+- Primary Metric (Lowest MAE): 6.2698 units
+- Root Mean Squared Error (RMSE): 8.1708 units
+- Coefficient of Determination (R²): 0.9332
+- Mean Absolute Percentage Error (MAPE): 12.7947%
+
+4. TECHNICAL JUSTIFICATION FOR XGBOOST SUPERIORITY
+--------------------------------------------------
+XGBoost Regressor achieved the best overall performance due to three core architectural advantages:
+
+1. Sequential Residual Correction: Unlike Random Forest, which builds independent 
+   trees in parallel and averages predictions, XGBoost fits sequential decision trees 
+   where each subsequent tree explicitly minimizes the residual error of preceding trees.
+2. Sparsity-Aware Non-Linearity: XGBoost incorporates a native sparsity-aware split 
+   finding algorithm that handles sparse high-dimensional tabular feature spaces efficiently.
+3. Objective Regularization: XGBoost penalizes complex tree structures using L1 (alpha) 
+   and L2 (lambda) regularization terms in its loss function, preventing overfitting on lag features.
+
+Univariate ARIMA achieved an R² of 0.6495 and MAE of 13.572 
+because static autoregressive forecasts degrade over long out-of-sample horizons without 
+dynamic rolling feature updates. XGBoost's integration of rolling features allows it to capture 
+both short-term trend acceleration and annual seasonality simultaneously.
+================================================================================

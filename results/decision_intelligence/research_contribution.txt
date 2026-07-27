@@ -1,0 +1,30 @@
+========================================================================
+RESEARCH CONTRIBUTION: EXPLAINABLE INTELLIGENT DECISION SUPPORT
+========================================================================
+
+1. METHODOLOGICAL NOVELTY:
+--------------------------
+ Traditional retail forecasting pipelines output scalar demand values (units) and stop.
+ This research extends standard pipelines by implementing a joint Decision Scoring and Risk
+ Assessment Framework to synthesize actionable business outcomes directly.
+
+ * Decision Score Formulation:
+   Decision_Score = 0.30*Growth_Norm + 0.25*Trend_Strength + 0.20*SHAP_Impact +
+                    0.15*Seasonality + 0.10*Stability
+   By utilizing local Shapley values as a criteria weight in Multi-Criteria Decision Analysis,
+   the system ensures predictions heavily backed by robust features receive priority.
+
+ * Risk Score Formulation:
+   Risk_Score = 0.25*Vol + 0.25*Variance + 0.25*Instability + 0.25*Uncertainty
+   By mapping model test-set residuals (uncertainty) and historical coefficient of variation
+   to risk bounds, the system protects against supply chain volatility.
+
+2. PEER-REVIEW JUSTIFICATION (E-IDSS):
+--------------------------------------
+ This pipeline qualifies as an Explainable Intelligent Decision Support System because:
+ 1. Intelligent: Utilizes Tree-based ensembles (XGBoost) for high-accuracy forecasts.
+ 2. Explainable: Leverages local SHAP value decompositions to justify each recommendation.
+ 3. Decision Support: Translates predictions to risk-rated priority queues and compiles
+    executive summaries ready for supply chain integrations.
+
+========================================================================

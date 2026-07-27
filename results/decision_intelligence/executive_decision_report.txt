@@ -1,0 +1,108 @@
+========================================================================
+EXECUTIVE DECISION REPORT: EXPLAINABLE INTELLIGENT DECISION SUPPORT
+========================================================================
+
+Operational Horizon : 2017-12-31
+Aggregate Scope     : 500 Store-Item Forecast Nodes
+
+1. EXECUTIVE SUMMARY:
+---------------------
+ The Explainable Intelligent Decision Support System (E-IDSS) has integrated multi-criteria
+ decision scores with prediction uncertainties. Currently, the average Operational Decision
+ Score across all nodes is 44.54/100, while the average Risk Exposure Score is 42.00/100.
+ A total of 188 nodes (37.6%) exhibit high or critical risk profiles,
+ requiring immediate strategic inventory monitoring.
+
+2. BUSINESS DECISION CATEGORIES MATRIX:
+---------------------------------------
+ * Stable Demand           : 209  nodes (41.8%)
+ * Overstock Risk          : 98   nodes (19.6%)
+ * Strategic Monitoring    : 90   nodes (18.0%)
+ * Declining Demand        : 90   nodes (18.0%)
+ * Growth Opportunity      : 13   nodes (2.6%)
+
+3. DECISION RISK VS. PRIORITY CROSS-TABULATION MATRIX:
+------------------------------------------------------
+Priority_Level  High Priority  Low Priority  Medium Priority
+Risk_Level                                                  
+Critical Risk               8             2               65
+High Risk                   6            14               93
+Low Risk                   27            15              136
+Medium Risk                 9            19              106
+
+4. STORE PERFORMANCE RANKING (By Mean Decision Score):
+------------------------------------------------------
+  Rank 1  | Store 3  | Average Decision Score: 45.86/100
+  Rank 2  | Store 4  | Average Decision Score: 45.60/100
+  Rank 3  | Store 8  | Average Decision Score: 45.36/100
+  Rank 4  | Store 9  | Average Decision Score: 44.84/100
+  Rank 5  | Store 7  | Average Decision Score: 44.73/100
+  Rank 6  | Store 2  | Average Decision Score: 44.64/100
+  Rank 7  | Store 6  | Average Decision Score: 44.21/100
+  Rank 8  | Store 1  | Average Decision Score: 43.63/100
+  Rank 9  | Store 5  | Average Decision Score: 43.40/100
+  Rank 10 | Store 10 | Average Decision Score: 43.14/100
+
+5. TOP 5 PRODUCT ITEMS BY OPPORTUNITY SCORE:
+-------------------------------------------
+  Rank 1  | Item 27  | Average Decision Score: 52.10/100
+  Rank 2  | Item 5   | Average Decision Score: 52.04/100
+  Rank 3  | Item 47  | Average Decision Score: 51.36/100
+  Rank 4  | Item 11  | Average Decision Score: 51.15/100
+  Rank 5  | Item 45  | Average Decision Score: 48.64/100
+
+6. TOP 5 CRITICAL REPLENISHMENT OPPORTUNITIES:
+----------------------------------------------
+  1. Store 6  Item 40 | Score: 71.32/100 | Action: Increase inventory by 10.7% to meet predicted demand surge
+     Forecast Reason: Forecasted demand is 10.7% higher than historical averages
+     Trend Reason   : Demand is accelerating: 7-day moving average (22.0) exceeds 30-day baseline (20.0)
+     SHAP Reason    : rolling_mean_7 SHAP contribution indicates a strong positive impact of recent sales, verifying high prediction confidence based on historical patterns
+     Risk Reason    : Low forecast uncertainty: minimal volatility observed in predictions
+
+  2. Store 4  Item 4  | Score: 69.82/100 | Action: Increase inventory by 9.1% to meet predicted demand surge
+     Forecast Reason: Forecasted demand is 9.1% higher than historical averages
+     Trend Reason   : Demand is accelerating: 7-day moving average (23.6) exceeds 30-day baseline (21.1)
+     SHAP Reason    : rolling_mean_7 SHAP contribution indicates a strong positive impact of recent sales, verifying high prediction confidence based on historical patterns
+     Risk Reason    : Low forecast uncertainty: minimal volatility observed in predictions
+
+  3. Store 6  Item 27 | Score: 68.03/100 | Action: Maintain current replenishment levels
+     Forecast Reason: Forecasted demand aligns closely with historical baseline levels
+     Trend Reason   : Demand is accelerating: 7-day moving average (16.6) exceeds 30-day baseline (14.3)
+     SHAP Reason    : rolling_mean_7 SHAP contribution indicates a strong positive impact of recent sales, verifying high prediction confidence based on historical patterns
+     Risk Reason    : Low forecast uncertainty: minimal volatility observed in predictions
+
+  4. Store 4  Item 47 | Score: 65.52/100 | Action: Increase inventory by 7.5% to meet predicted demand surge
+     Forecast Reason: Forecasted demand is 7.5% higher than historical averages
+     Trend Reason   : Demand is accelerating: 7-day moving average (22.6) exceeds 30-day baseline (20.9)
+     SHAP Reason    : rolling_mean_7 SHAP contribution indicates a strong positive impact of recent sales, verifying high prediction confidence based on historical patterns
+     Risk Reason    : Low forecast uncertainty: minimal volatility observed in predictions
+
+  5. Store 7  Item 17 | Score: 64.95/100 | Action: Maintain current replenishment levels
+     Forecast Reason: Forecasted demand aligns closely with historical baseline levels
+     Trend Reason   : Demand is accelerating: 7-day moving average (23.0) exceeds 30-day baseline (19.5)
+     SHAP Reason    : rolling_mean_7 SHAP contribution indicates a strong positive impact of recent sales, verifying high prediction confidence based on historical patterns
+     Risk Reason    : Low forecast uncertainty: minimal volatility observed in predictions
+
+7. TOP 5 SEVERE INVENTORY RISKS:
+--------------------------------
+  1. Store 2  Item 28 | Risk Score: 99.07/100 | Risk Level: Critical Risk
+     Trend Reason   : Demand is accelerating: 7-day moving average (97.6) exceeds 30-day baseline (95.3)
+     Risk Reason    : Critical risk of variance: high historical volatility and forecasting residuals
+
+  2. Store 2  Item 15 | Risk Score: 98.89/100 | Risk Level: Critical Risk
+     Trend Reason   : Demand is accelerating: 7-day moving average (96.9) exceeds 30-day baseline (96.5)
+     Risk Reason    : Critical risk of variance: high historical volatility and forecasting residuals
+
+  3. Store 2  Item 18 | Risk Score: 96.12/100 | Risk Level: Critical Risk
+     Trend Reason   : Demand is slowing: 7-day moving average (92.1) has fallen below 30-day baseline (93.3)
+     Risk Reason    : Critical risk of variance: high historical volatility and forecasting residuals
+
+  4. Store 8  Item 15 | Risk Score: 94.57/100 | Risk Level: Critical Risk
+     Trend Reason   : Demand is slowing: 7-day moving average (90.3) has fallen below 30-day baseline (91.4)
+     Risk Reason    : Critical risk of variance: high historical volatility and forecasting residuals
+
+  5. Store 8  Item 28 | Risk Score: 94.17/100 | Risk Level: Critical Risk
+     Trend Reason   : Demand is slowing: 7-day moving average (90.9) has fallen below 30-day baseline (91.4)
+     Risk Reason    : Critical risk of variance: high historical volatility and forecasting residuals
+
+========================================================================

@@ -1,0 +1,3 @@
+Model,MAE_before,MAE_after,RMSE_before,RMSE_after,R2_before,R2_after,MAPE_before,MAPE_after
+Random Forest Regressor,15.6473,6.2584,21.9242,8.1515,0.5171,0.9335,29.6181,12.7615
+XGBoost Regressor,11.7674,6.1748,16.0121,8.0365,0.7424,0.9353,23.1848,12.5866

@@ -1,0 +1,58 @@
+============================================================
+EXPLAINABLE AI (XAI) SHAP ANALYSIS REPORT
+============================================================
+
+Project Title: An Intelligent Decision Support System for Retail Sales Forecasting
+Methodology  : Shapley Additive Explanations (Tree SHAP) on XGBoost Regressor v2
+
+1. TOP 10 MOST INFLUENTIAL FEATURES:
+------------------------------------
+ 1. rolling_mean_7     (Mean |SHAP|: 8.7420)
+ 2. rolling_mean_30    (Mean |SHAP|: 6.3300)
+ 3. weekday            (Mean |SHAP|: 3.1117)
+ 4. sales_lag_7        (Mean |SHAP|: 2.5168)
+ 5. sales_lag_14       (Mean |SHAP|: 1.1562)
+ 6. month              (Mean |SHAP|: 0.8577)
+ 7. is_weekend         (Mean |SHAP|: 0.6290)
+ 8. year               (Mean |SHAP|: 0.2871)
+ 9. weekofyear         (Mean |SHAP|: 0.2465)
+ 10. sales_lag_30       (Mean |SHAP|: 0.1489)
+
+2. DIRECTIONAL CONTRIBUTOR CLASSIFICATION:
+------------------------------------------
+ Positive Contributors (Higher values increase sales predictions):
+   - item
+   - day
+   - weekday
+   - is_weekend
+   - sales_lag_7
+   - sales_lag_14
+   - sales_lag_30
+   - rolling_mean_7
+   - rolling_mean_30
+
+ Negative Contributors (Higher values decrease sales predictions):
+   - store
+
+ Neutral/Non-linear/Categorical Contributors:
+   - year
+   - month
+   - weekofyear
+   - quarter
+   - month_start
+   - month_end
+
+3. BUSINESS-FRIENDLY MODEL DECISION EXPLANATIONS:
+-------------------------------------------------
+ * rolling_mean_7     -> rolling_mean_7 provides a short-term trend proxy, adjusting forecasts dynamically based on recent sales trajectories.
+ * rolling_mean_30    -> rolling_mean_30 acts as a major driver of demand forecasting by establishing a baseline for mid-term store demand and smoothing seasonal anomalies.
+ * weekday            -> weekday indicates intra-week seasonality, tracking systematic demand increases as weekends approach.
+ * sales_lag_7        -> sales_lag_7 strongly influences future sales predictions, showing that weekly cycles and sales exactly 7 days ago are primary anchors for forecasting.
+ * sales_lag_14       -> sales_lag_14 contributes to model accuracy by adjusting forecasts based on historical partition variances.
+ * month              -> month dictates seasonal trends, indicating that summer months systematically drag sales volumes upward due to natural consumer behavior cycles.
+ * is_weekend         -> is_weekend exerts a positive influence on sales, demonstrating that consumer purchasing velocity increases significantly on Saturdays and Sundays.
+ * year               -> year contributes to model accuracy by adjusting forecasts based on historical partition variances.
+ * weekofyear         -> weekofyear contributes to model accuracy by adjusting forecasts based on historical partition variances.
+ * sales_lag_30       -> sales_lag_30 indicates longer monthly replenishment cycles, capturing monthly volume correlations.
+
+============================================================

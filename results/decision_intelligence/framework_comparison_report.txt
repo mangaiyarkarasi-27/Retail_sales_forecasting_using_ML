@@ -1,0 +1,23 @@
+========================================================================
+COMPARATIVE EVALUATION: RULE RECOMMENDATIONS VS. DECISION INTELLIGENCE
+========================================================================
+
+1. STRUCTURAL CAPABILITY COMPARISON:
+------------------------------------
+ Evaluation Dimension      | Rule Recommendation Engine     | Decision Intelligence (E-IDSS)
+ -------------------------------------------------------------------------------------------
+ Prioritization            | Binary thresholds (No Ranking) | 0-100 Decision Score Ranking  
+ Explainability            | Static text blocks             | SHAP local feature justifications
+ Risk Awareness            | Not integrated                 | Volatility & Uncertainty scoring
+ Actionability             | Generic inventory alerts       | Categorized strategic opportunity
+ Executive Quality         | No cross-tab/priorities        | Rankings, matrices & summary reports
+
+2. STATISTICAL ADVANTAGES:
+--------------------------
+ * Multi-Criteria Decisions: The Rule Engine uses only growth rate to decide actions.
+   E-IDSS integrates growth, moving average trends, seasonality coefficients, local SHAP values,
+   and historical demand stability. This prevents ordering surges on noisy outliers.
+ * Risk-Aware Safety Stocks: Rather than flat multiplier buffers, E-IDSS calculates prediction
+   uncertainty (RMSE) dynamically, adjusting safety actions based on forecast confidence.
+
+========================================================================
