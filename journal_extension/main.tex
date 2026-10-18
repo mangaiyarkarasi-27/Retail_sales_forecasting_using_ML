@@ -1,0 +1,79 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\title{\textbf{Bridging Decision-Time-Safe Multi-Horizon Demand Forecasting and Uncertainty-Aware Retail Replenishment: An Empirical Conformal Prediction and Discrete-Event Simulation Study}}
+
+\author{
+  \textbf{S. Mohankumar}\textsuperscript{1}, 
+  \textbf{S. Kiruthika}\textsuperscript{1}, 
+  \textbf{N. Raghapriya}\textsuperscript{2}, 
+  \textbf{R. Mangaiyarkarasi}\textsuperscript{1} \\[0.5em]
+  \small\textsuperscript{1}Department of M.Tech. Computer Science and Engineering (Integrated), \\
+  \small Erode Sengunthar Engineering College, Erode, Tamil Nadu, India \\
+  \small\textsuperscript{2}Department of Electronics and Communication Engineering, \\
+  \small Erode Sengunthar Engineering College, Erode, Tamil Nadu, India \\
+  \small Email: \texttt{mohankumar@esec.ac.in, skiruthicse@gmail.com, raghapriyanresec@gmail.com, mangaiyarkarasi8944@gmail.com}
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Accurate retail demand estimation is vital for modern supply chain management, yet standard machine learning pipelines predominantly optimize symmetric point-prediction errors without communicating predictive uncertainty or accounting for asymmetric stockout penalties. Furthermore, temporal nonstationarity and scale shifts routinely violate the exchangeability assumptions underlying probabilistic calibration. This study presents an end-to-end empirical decision-support framework that bridges leakage-free multi-horizon demand forecasting, rolling forecast-conditional conformal prediction, and continuous-review inventory simulation across 500 heterogeneous retail store-item time series. Extending our preliminary conference baseline work, we implement seven decoupled direct Extreme Gradient Boosting (XGBoost) regressors enforcing a decision-time minimum lag constraint ($\tau \ge 7$ days), achieving stable validation accuracy ($\text{MAE} \approx 6.04$) while eliminating recursive error compounding and passing ten automated leakage audit tests. On an untouched 365-day out-of-sample test holdout, raw rolling conformal prediction experiences empirical under-coverage ($17.90\%-31.98\%$ at nominal $90\%$ confidence) driven by a $3.55\times$ to $4.30\times$ expansion in residual standard deviation and seasonal phase drift ($p < 10^{-42}$). Relative forecast-conditional scaling significantly improves interval efficiency, lowering mean Winkler score to $409.66$ ($p = 1.44 \times 10^{-28}$) and boosting top-decile demand coverage by $+8.80$ percentage points. When translated into dynamic replenishment safety stock ($ROP = \hat{D} + SS$), uncertainty-aware replenishment increases the portfolio demand-weighted fill rate by $+10.64$ percentage points ($46.87\%$ to $57.51\%$) at lead time $L=1$ ($p < 10^{-75}$) and cuts lost sales volume by $20.03\%-29.57\%$ ($1.14$ million units saved). Financial analysis reveals a $-10.83\%$ net operating cost reduction at $L=1$ ($-\$790,834$, $p = 6.65 \times 10^{-55}$) and maps the multi-day trade-off frontier where conformal replenishment is cost-preferred whenever shortage penalties exceed $\$2.00/\text{unit}$.
+\end{abstract}
+
+\textbf{Keywords:} Retail sales forecasting, Multi-horizon forecasting, Conformal prediction, Uncertainty quantification, Inventory decision support, Temporal distribution shift, Discrete-event simulation.
+
+\input{sections/introduction.tex}
+\input{sections/related_work.tex}
+\input{sections/methodology.tex}
+\input{sections/results.tex}
+\input{sections/discussion.tex}
+\input{sections/limitations.tex}
+\input{sections/conclusion.tex}
+
+\section*{Declarations}
+
+\subsection*{Conference Extension Statement}
+This manuscript is a substantial methodological, mathematical, and empirical extension of our preliminary conference paper entitled \textit{"An Intelligent Decision Support System for Retail Sales Forecasting Using Machine Learning and Explainable AI"}, presented at the IEEE International Conference on Intelligent Decision Support Systems (E-IDSS 2026) \cite{e_idss_ieee}. While the conference baseline introduced a single-step point-forecasting model with TreeSHAP explainability and heuristic decision scoring, this journal article expands the scope into a decision-time-safe direct multi-horizon forecasting architecture, out-of-sample residual calibration, rolling forecast-conditional conformal uncertainty quantification under distribution shift, and a continuous-review discrete-event inventory replenishment simulation across multiple lead times and shortage penalty regimes.
+
+\subsection*{Funding}
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
+\subsection*{Conflicts of Interest}
+The authors declare that they have no conflicts of interest.
+
+\subsection*{Data Availability Statement}
+The Store Item Demand Forecasting benchmark dataset analyzed in this study is publicly available. All experimental models, feature extraction pipelines, conformal calibration routines, and inventory simulation scripts are preserved for exact scientific reproducibility.
+
+\subsection*{Ethics Approval and Consent to Participate}
+Not applicable. This study uses non-identifiable public secondary demand time series and does not involve human subjects or biological tissue.
+
+\subsection*{Author Contributions}
+S. Mohankumar: Conceptualization, Supervision, Project Administration. S. Kiruthika: Methodology, Software, Formal Analysis. N. Raghapriya: Investigation, Data Curation, Validation. R. Mangaiyarkarasi: Writing (Original Draft), Visualization, Writing (Review \& Editing).
+
+\bibliographystyle{unsrt}
+\bibliography{references.bib}
+
+\end{document}

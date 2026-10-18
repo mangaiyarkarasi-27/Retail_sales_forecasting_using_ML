@@ -1,0 +1,40 @@
+# Direct Multi-Horizon Forecasting Configuration
+
+models_dir: "journal_extension/results/forecasting_models"
+results_dir: "journal_extension/results/forecasting"
+data_path: "data/processed_train.csv"
+
+model_params:
+  n_estimators: 50
+  learning_rate: 0.1
+  max_depth: 8
+  subsample: 1.0
+  colsample_bytree: 0.8
+  reg_alpha: 0.1
+  reg_lambda: 1.0
+  random_state: 42
+  n_jobs: -1
+
+features:
+  - store
+  - item
+  - year
+  - month
+  - day
+  - weekday
+  - weekofyear
+  - quarter
+  - is_weekend
+  - month_start
+  - month_end
+  - sales_lag_7
+  - sales_lag_14
+  - sales_lag_30
+  - rolling_mean_7
+  - rolling_mean_30
+
+split_boundaries:
+  train_end_date: "2015-12-31"
+  val_end_date: "2016-12-31"
+  test_start_date: "2017-01-06"
+  test_end_date: "2017-12-31"

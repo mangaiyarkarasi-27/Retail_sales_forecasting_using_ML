@@ -1,0 +1,33 @@
+Citation_Key,Authors,Year,Title,Source_Venue,Sections_Cited,Verification_Status
+e_idss_ieee,"Mohankumar, S. et al.",2026,"An Intelligent Decision Support System for Retail Sales Forecasting Using Machine Learning and Explainable AI",IEEE E-IDSS Conference,Section 1.1; Section 1.4; Section 2.3; Table 1; Declarations,VERIFIED_EXACT
+angelopoulos2021gentle,"Angelopoulos, A. N., & Bates, S.",2021,"A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",Foundations and Trends in Machine Learning,Section 1.2; Section 2.4; Section 3.6; Section 5.2,VERIFIED_EXACT
+axsaeter2015inventory,"Axsäter, S.",2015,"Inventory Control (3rd ed.)",Springer,Section 1.2; Section 2.6; Section 3.9; Section 6.2,VERIFIED_EXACT
+ban2019big,"Ban, G. Y., & Rudin, C.",2019,"The Big Data Newsvendor: Practical Insights from Machine Learning",Operations Research,Section 1.1; Section 1.3; Section 2.6; Section 5.4,VERIFIED_EXACT
+barber2023conformal,"Barber, R. F. et al.",2023,"Conformal Prediction Beyond Exchangeability",The Annals of Statistics,Section 1.2; Section 1.3; Section 2.5; Section 5.4,VERIFIED_EXACT
+bertsimas2020predictive,"Bertsimas, D., & Kallus, N.",2020,"From Predictive to Prescriptive Analytics",Management Science,Section 1.1; Section 1.3; Section 2.6; Section 5.4,VERIFIED_EXACT
+chaganti2026,"Chaganti, S.",2026,"Advancing Data-Driven Decision Support Systems through Explainable Artificial Intelligence",Proc. ICICCS,Section 2.3,VERIFIED_EXACT
+chen2016xgboost,"Chen, T., & Guestrin, C.",2016,"XGBoost: A Scalable Tree Boosting System",Proc. ACM SIGKDD,Section 1.1; Section 2.1; Section 3.4; Section 6.3,VERIFIED_EXACT
+gibbs2021adaptive,"Gibbs, I., & Candès, E. J.",2021,"Adaptive Conformal Inference Under Distribution Shift",NeurIPS 2021,Section 2.5; Section 5.4,VERIFIED_EXACT
+gneiting2007strictly,"Gneiting, T., & Raftery, A. E.",2007,"Strictly Proper Scoring Rules, Prediction, and Estimation",Journal of the American Statistical Association,Section 1.1; Section 1.2; Section 2.4; Section 2.7,VERIFIED_EXACT
+hobor2026comparative,"Hobor, L. et al.",2026,"Comparative Analysis of Modern Machine Learning Models for Retail Sales Forecasting",Croatian Operational Research Review,Section 1.1; Section 1.3; Section 2.1; Section 5.4,VERIFIED_EXACT
+huber2019integrating,"Huber, J. et al.",2019,"Integrating Machine Learning and Operations Research for Dynamic Retail Replenishment",European Journal of Operational Research,Section 1.2; Section 1.3; Section 2.4; Section 2.6; Section 5.4,VERIFIED_EXACT
+lin2026critical,"Lin, T. et al.",2026,"A Critical Review of State-of-the-Art Explainable Artificial Intelligence (XAI) Methods and Their Business Applications",Artificial Intelligence Review,Section 1.2; Section 2.3,VERIFIED_EXACT
+lundberg2017unified,"Lundberg, S. M., & Lee, S.-I.",2017,"A Unified Approach to Interpreting Model Predictions",NeurIPS 2017,Section 1.2; Section 2.3,VERIFIED_EXACT
+madabhushini2025,"Madabhushini, I.",2025,"Explainable AI (XAI) in Business Intelligence: Enhancing Trust and Transparency in Enterprise Analytics",American Journal of Engineering and Tech.,Section 2.3,VERIFIED_EXACT
+makridakis2022m5,"Makridakis, S. et al.",2022,"The M5 Competition: Background, Organization, and Results",International Journal of Forecasting,Section 1.1; Section 1.3; Section 2.1; Section 5.4; Section 6.3,VERIFIED_EXACT
+malik2024sales,"Malik, S. et al.",2024,"Sales Forecasting Using Machine Learning Algorithm in the Retail Sector",Journal of Computing & Biomedical Informatics,Section 1.1; Section 1.2; Section 2.7,VERIFIED_EXACT
+mitra2022comparative,"Mitra, A. et al.",2022,"A Comparative Study of Demand Forecasting Models for a Multi-Channel Retail Company",Operations Research Forum,Section 1.1; Section 2.1,VERIFIED_EXACT
+mustapha2025forecasting,"Mustapha, O. O., & Sithole, T.",2025,"Forecasting Retail Sales using Machine Learning Models",American Journal of Statistics and Actuarial Sci.,Section 1.1; Section 2.1,VERIFIED_EXACT
+narlawar2025explainable,"Narlawar, S.",2025,"Explainable AI (XAI) in Enterprise Analytics Systems",World Journal of Advanced Research and Reviews,Section 1.2; Section 2.3,VERIFIED_EXACT
+salinas2020deepar,"Salinas, D. et al.",2020,"DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks",International Journal of Forecasting,Section 2.4,VERIFIED_EXACT
+silver1998inventory,"Silver, E. A. et al.",1998,"Inventory Management and Production Planning and Scheduling (3rd ed.)",John Wiley & Sons,Section 1.2; Section 1.3; Section 2.4; Section 2.7,VERIFIED_EXACT
+snyder2019fundamentals,"Snyder, L. V., & Shen, Z.-J. M.",2019,"Fundamentals of Supply Chain Theory (2nd ed.)",John Wiley & Sons,Section 1.2; Section 2.6; Section 2.7,VERIFIED_EXACT
+spanos2022application,"Spanos, A. C. et al.",2022,"An Application of a Decision Support System Enabled by a Hybrid Algorithmic Framework",Algorithms,Section 1.1; Section 2.7,VERIFIED_EXACT
+stankeviciute2021conformal,"Stankeviciute, K. et al.",2021,"Conformal Time-Series Forecasting",NeurIPS 2021,Section 1.2; Section 1.3; Section 2.4; Section 5.4,VERIFIED_EXACT
+syntetos2016supply,"Syntetos, A. A. et al.",2016,"Supply Chain Forecasting: Theory, Practice, Gaps and the Future",European Journal of Operational Research,Section 1.2; Section 2.1; Section 2.2; Section 2.4; Section 2.6,VERIFIED_EXACT
+tibshirani2019conformal,"Tibshirani, R. J. et al.",2019,"Conformal Prediction Under Covariate Shift",NeurIPS 2019,Section 1.2; Section 2.5; Section 5.4,VERIFIED_EXACT
+tiwari2025agentic,"Tiwari, N., & Prasad, S. K.",2025,"Agentic AI-Driven Optimizing Demand Forecasting in Retail Systems",Proc. IEEE AIMV,Section 1.1,VERIFIED_EXACT
+tiwari2026explainable,"Tiwari, S. et al.",2026,"Explainable Multi-Step Time-Series Forecasting in Supply Chains: Avoiding Temporal Leakage",Mathematics,Section 1.1; Section 2.2,VERIFIED_EXACT
+venkiteela2025machine,"Venkiteela, P.",2025,"Machine Learning Framework for Retail Sales Forecasting",IJCESEN,Section 1.1,VERIFIED_EXACT
+vovk2005algorithmic,"Vovk, V. et al.",2005,"Algorithmic Learning in a Random World",Springer,Section 1.2; Section 1.3; Section 2.4; Section 5.2,VERIFIED_EXACT
+yeesin2024application,"Yeesin, K., & Kajornkasirat, S.",2024,"Application of Machine Learning in Multi-Store Retail Demand Forecasting",Proc. IIPEM,Section 1.1; Section 2.1,VERIFIED_EXACT

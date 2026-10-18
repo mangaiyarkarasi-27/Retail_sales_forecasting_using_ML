@@ -1,0 +1,9 @@
+Figure_Number,Figure_Label,Figure_Caption,Source_Experiment,Placement_Section,Verification_Status
+Figure 1,fig:system_architecture,End-to-End System Architecture of Decision-Time-Safe Forecasting and Uncertainty-Aware Replenishment Framework,RESULTS_FIGURE_SPECIFICATIONS.md,Section 3.1,VERIFIED_PLACEHOLDER
+Figure 2,fig:forecasting_performance,Direct Multi-Horizon Forecasting Accuracy (MAE and RMSE) across Horizons h=1..7,EXP-011,Section 4.1,VERIFIED_PLACEHOLDER
+Figure 3,fig:shift_diagnostics,Residual Distribution Shift and Quarterly Signed Error Diagnostics,EXP-014,Section 4.2,VERIFIED_PLACEHOLDER
+Figure 4,fig:conformal_tradeoff,Conformal Prediction Interval Width vs Empirical Coverage Trade-Off,EXP-016,Section 4.3,VERIFIED_PLACEHOLDER
+Figure 5,fig:k_robustness,Calibration Neighborhood Size (K) Sensitivity and Winkler Loss Stability Plateau,EXP-018,Section 4.4,VERIFIED_PLACEHOLDER
+Figure 6,fig:inventory_service,Portfolio Demand-Weighted Fill Rate and Lost Sales Reduction across Lead Times,EXP-019,Section 4.5,VERIFIED_PLACEHOLDER
+Figure 7,fig:cost_breakdown,Portfolio Total Operating Cost Decomposition across Lead Times under Baseline Shortage Penalty,EXP-019,Section 4.6,VERIFIED_PLACEHOLDER
+Figure 8,fig:sensitivity_surface,Shortage Cost Sensitivity Surface: Economic Preference Boundary across Lead Times and Penalties,EXP-019,Section 4.7,VERIFIED_PLACEHOLDER

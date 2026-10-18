@@ -1,0 +1,30 @@
+\section{Limitations}
+
+To maintain scientific integrity, the methodological and empirical boundaries of this research are explicitly stated:
+
+\subsection{Single Benchmark Dataset Scope}
+The empirical evaluation was conducted on a single public benchmark dataset comprising 500 store-item time series across 10 retail locations over a 5-year period. While the dataset exhibits realistic seasonal, trend, and intermittent characteristics, it does not represent multiple independent retail enterprise networks or diverse geographic markets.
+
+\subsection{Controlled Discrete-Event Simulation Assumptions}
+The inventory evaluation relies on a controlled discrete-event simulation model rather than a live store deployment. The simulation assumes:
+\begin{itemize}
+    \item Unconstrained supplier production and fulfillment capacity.
+    \item Fixed deterministic supplier delivery lead times ($L \in \{1, 3, 5, 7\}$ days).
+    \item Absence of warehouse physical storage capacity constraints or transportation bottlenecks.
+    \item Complete loss of unmet demand (lost sales dynamics) without customer backlogging or product substitution.
+\end{itemize}
+
+\subsection{Demand Forecasting Architecture Scope}
+The forecasting layer utilizes global Extreme Gradient Boosting (XGBoost) regressors. While GBDTs represent the established benchmark for structured tabular demand data \cite{makridakis2022m5, chen2016xgboost}, this study did not benchmark against deep temporal neural networks (such as Temporal Fusion Transformers or DeepAR) or pre-trained foundation time-series models within the multi-horizon inventory evaluation.
+
+\subsection{Conformal Coverage Breakdown Under Nonstationarity}
+The empirical findings demonstrate that rolling conformal prediction does not maintain nominal coverage guarantees (such as 90\%) when forward test distributions undergo residual-scale expansion and seasonal drift. The proposed uncertainty layer should not be interpreted as providing guaranteed nominal coverage under nonstationary distribution shifts.
+
+\subsection{Inventory Policy Formulation Scope}
+The operational policy evaluated is a continuous-review order-up-to policy $(ROP, S)$ with dynamic reorder points. The study does not solve the general multi-echelon stochastic inventory control problem, optimize joint order batching, or evaluate periodic-review $(s, S)$ policies.
+
+\subsection{Economic Cost Function Assumptions}
+The financial model uses fixed, linear cost parameters ($K_{\text{order}}=\$10.00/\text{order}$, $h=\$0.20/\text{unit/day}$, $p \in \{\$0.60, \$1.00, \$2.00, \$4.00\}$). Real-world supply chains may exhibit non-linear holding costs, volume discounts on freight, contractual minimum order quantities (MOQs), and dynamic margin penalties.
+
+\subsection{Generalization Boundary}
+The reported quantitative improvements (such as fill rate deltas and cost differences) reflect the specific dataset, decision-time feature protocol, and simulation parameters evaluated. These results should not be generalized automatically to other supply chain networks without external empirical validation.

@@ -1,0 +1,16 @@
+# Conformal Uncertainty Calibration Configuration
+
+calibration_window: 100
+coverage_levels: [0.80, 0.90, 0.95]
+lead_times: [1, 3, 5, 7]
+
+quantile_convention: "Finite-Sample Correction Index: ceil((n + 1) * (1 - alpha))"
+min_observations: 20
+clip_zero: true
+
+output_paths:
+  per_series_csv: "journal_extension/results/uncertainty/corrected/per_series_uncertainty_results.csv"
+  summary_csv: "journal_extension/results/uncertainty/corrected/uncertainty_summary.csv"
+  residuals_csv: "journal_extension/results/uncertainty/oos_calibration_residuals.csv"
+  comparison_csv: "journal_extension/results/uncertainty/calibration_correction_comparison.csv"
+  plots_dir: "journal_extension/results/uncertainty/corrected/"

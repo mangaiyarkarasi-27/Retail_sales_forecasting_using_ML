@@ -1,0 +1,4 @@
+SELECTED_K=100
+SELECTION_METRIC=lowest_aggregate_winkler_with_1pct_stability_tiebreaker
+WINKLER_SCORE_2016=2099.3456
+ELIGIBLE_CANDIDATES_WITHIN_1PCT=[np.int64(75), np.int64(100), np.int64(50), np.int64(30)]

@@ -1,0 +1,9 @@
+horizon,MAE,RMSE,training_time_sec,prediction_time_sec,model_architecture,feature_protocol,training_period,validation_period
+h=1,6.0416,7.8677,2.6753,0.0494,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+h=2,6.0432,7.8667,1.0070,0.0546,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+h=3,6.0366,7.8604,0.8832,0.0499,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+h=4,6.0384,7.8622,0.8614,0.0492,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+h=5,6.0318,7.8556,0.8543,0.0438,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+h=6,6.0285,7.8544,0.8891,0.0464,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+h=7,6.0518,7.8795,0.8741,0.0530,Global Direct XGBoost,16 Decision-Time Features (Lags >= 7),2013-2015,2016
+Aggregate,6.0388,7.8638,8.0444,0.3463,7 Decoupled Global Models,Zero Lookahead Minimum-Lag >= 7,2013-2015,2016

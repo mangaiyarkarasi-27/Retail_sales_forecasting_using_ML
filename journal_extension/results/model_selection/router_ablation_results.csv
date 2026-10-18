@@ -1,0 +1,5 @@
+Features_Set,Accuracy,Mean_Forecasting_MAE
+A_Seasonality_Only,0.726,6.1819
+B_Volume_Seasonality,0.738,6.1819
+C_Volume_Volatility_Seasonality,0.754,6.1818
+D_Full_Demand_Profile,0.704,6.1843

@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Large journal residual files
+journal_extension/results/uncertainty/oos_direct/daily_oos_residuals.csv
+journal_extension/results/uncertainty/oos_calibration_residuals.csv
+journal_extension/results/uncertainty/oos_direct/lead_time_oos_residuals.csv

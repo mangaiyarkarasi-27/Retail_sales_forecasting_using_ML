@@ -1,0 +1,4 @@
+Seasonality_Strength,Series_Count,Mean_XGBoost_MAE,Mean_RF_MAE,Mean_ARIMA_MAE,XGBoost_Wins,Random_Forest_Wins,ARIMA_Wins
+Low,167,4.4498,4.4873,7.3665,132,35,0
+Medium,166,6.1861,6.2764,13.0302,145,21,0
+High,167,7.8885,8.0118,20.317,144,23,0

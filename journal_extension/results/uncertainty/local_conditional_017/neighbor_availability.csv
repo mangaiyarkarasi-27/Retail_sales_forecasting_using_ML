@@ -1,0 +1,5 @@
+lead_time,k_neighbors,total_predictions,full_k_selected_points,full_k_percentage,partial_k_startup_points,partial_k_percentage
+1,50,182100,182100,100.0,0,0.0
+3,50,181100,181100,100.0,0,0.0
+5,50,180100,180100,100.0,0,0.0
+7,50,179100,179100,100.0,0,0.0

@@ -1,0 +1,2 @@
+aggregate_validation_mae,aggregate_validation_rmse,number_of_trained_models,features_used,target_boundary
+6.0388,7.8638,7,"store, item, year, month, day, weekday, weekofyear, quarter, is_weekend, month_start, month_end, sales_lag_7, sales_lag_14, sales_lag_30, rolling_mean_7, rolling_mean_30",Validation target dates strictly <= 2016-12-31

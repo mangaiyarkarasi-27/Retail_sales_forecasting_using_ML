@@ -1,0 +1,13 @@
+EXP-017 TEMPORAL LEAKAGE AUDIT VERIFICATION
+==================================================
+Test 1 - Historical Forecast Origin: PASSED (F_r,L uses only features <= r-1).
+Test 2 - Denominator Formula: PASSED (Denominator uses F_r,L, never actual future demand).
+Test 3 - Current Forecast Origin: PASSED (F_t,L uses only features <= t-1).
+Test 4 - Neighbor Selection Isolation: PASSED (Nearest neighbors selected strictly from eligible historical origins r).
+Test 5 - Temporal Eligibility Rule: PASSED (Strictly enforced r + L < t).
+Test 6 - Current Residual Isolation: PASSED (Origin t error is never in calibration set).
+Test 7 - 2017 Independence for K Selection: PASSED (K=50 selected strictly on 2016 validation data).
+Test 8 - 2017 Independence for Method Selection: PASSED (Methodology frozen prior to 2017 test evaluation).
+Test 9 - Neighbor Selection Demand Independence: PASSED (Neighbor distance d_r = |F_r - F_t| uses forecasts only).
+Test 10 - Invariance of Parameters: PASSED (W=100, K=50, epsilon=1e-4 frozen across evaluation).
+Audit Status: ALL 10 LEAKAGE TESTS PASSED.

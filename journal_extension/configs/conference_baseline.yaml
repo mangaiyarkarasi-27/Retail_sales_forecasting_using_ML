@@ -1,0 +1,51 @@
+# Conference Baseline Configuration (Frozen)
+
+dataset:
+  source: "data/processed_train.csv"
+  target: "sales"
+  train_split: "2013-01-31 to 2017-01-06"
+  test_split: "2017-01-06 to 2017-12-31"
+
+features:
+  list:
+    - "store"
+    - "item"
+    - "year"
+    - "month"
+    - "day"
+    - "weekday"
+    - "weekofyear"
+    - "quarter"
+    - "is_weekend"
+    - "month_start"
+    - "month_end"
+    - "sales_lag_7"
+    - "sales_lag_14"
+    - "sales_lag_30"
+    - "rolling_mean_7"
+    - "rolling_mean_30"
+
+model:
+  name: "XGBoost Regressor (Optimized)"
+  parameters:
+    n_estimators: 50
+    learning_rate: 0.1
+    max_depth: 8
+    subsample: 1.0
+    colsample_bytree: 0.8
+    reg_alpha: 0.1
+    reg_lambda: 1.0
+    random_state: 42
+    n_jobs: -1
+
+evaluation:
+  metrics:
+    MAE: 6.1748
+    RMSE: 8.0365
+    R2: 0.9353
+    MAPE_pct: 12.5866
+  split_strategy: "5-fold TimeSeriesSplit CV"
+
+reproducibility:
+  random_seed: 42
+  model_file: "results/models/best_model_v2.pkl"

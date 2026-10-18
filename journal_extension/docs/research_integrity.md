@@ -1,0 +1,1 @@
+# Research Integrity Guidelines\n\nGuidelines for preventing data leakage, preserving metric scales, and maintaining absolute objectivity in reporting results.\n

@@ -1,0 +1,12 @@
+method,k_neighbors,mean_coverage_error_2016,mean_winkler_score_2016,mean_interval_width_2016
+Scale_Normalized,0,0.6353,2020.4234,109.5499
+Raw_Conformal,0,0.644,2079.8386,103.4171
+Locally_Weighted,75,0.6393,2087.5948,106.2225
+Locally_Weighted,100,0.643,2099.3456,105.0477
+Forecast_Conditional_Hard,0,0.6408,2100.0637,105.255
+Locally_Weighted,50,0.641,2100.2989,105.0325
+Locally_Weighted,30,0.6382,2101.5061,104.9029
+Locally_Weighted,60,0.6443,2112.4031,104.1508
+Locally_Weighted,40,0.6446,2120.7666,103.419
+Locally_Weighted,20,0.6425,2135.6589,102.5986
+Locally_Weighted,10,0.6723,2249.7805,90.9776

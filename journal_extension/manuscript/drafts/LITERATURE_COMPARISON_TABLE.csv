@@ -1,0 +1,13 @@
+Study,Domain / Focus,Direct Multi-Horizon,Explainability (XAI),Conformal UQ Layer,Distribution Shift Diag.,Inventory Simulation,Multi-Lead Times (L),Cost Sensitivity (p),Portfolio-Level Testing
+Makridakis et al. (2022),M5 Retail Demand Forecasting,YES,NO,NO,NO,NO,NO,NO,"YES (30,490 series)"
+Chen & Guestrin (2016),XGBoost Algorithm Formulation,NO,NO,NO,NO,NO,NO,NO,NO
+Lundberg & Lee (2017),TreeSHAP Game-Theoretic XAI,NO,YES,NO,NO,NO,NO,NO,NO
+"Lin, Lau, & Hu (2026)",XAI in Enterprise Business DSS,NO,YES,NO,NO,NO,NO,NO,NO
+Angelopoulos & Bates (2021),Conformal Prediction Tutorial,NO,NO,YES,NO,NO,NO,NO,NO
+Barber et al. (2023),Nonstationary Conformal Theory,NO,NO,YES,YES,NO,NO,NO,NO
+Stankeviciute et al. (2021),Time-Series Conformal (CF-RNN),YES,NO,YES,NO,NO,NO,NO,NO
+Bertsimas & Kallus (2020),Data-Driven Newsvendor,NO,NO,NO,NO,YES (Static Single-Period),NO,YES,NO
+Ban & Rudin (2019),Big Data Newsvendor (ERM),NO,NO,NO,NO,YES (Static Single-Period),NO,YES,NO
+Huber et al. (2019),Quantile GBDT Bakery Inventory,NO,NO,NO,NO,YES (Short Fixed Lead Time),NO,YES,NO
+IEEE E-IDSS Baseline (2026),Explainable Retail DSS,NO,YES,NO,NO,NO,NO,NO,YES (500 series)
+This Study (Journal Extension),End-to-End Decision-Support DSS,YES (M1..M7),YES (TreeSHAP),YES (Forecast-Conditional),YES (Location-Scale),YES (Dynamic Discrete-Event),"YES (L in {1,3,5,7})",YES (p in {$0.60..$4.00}),"YES (500 series, Wilcoxon+Boot)"

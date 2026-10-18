@@ -1,0 +1,12 @@
+EXP-016 TEMPORAL LEAKAGE AUDIT VERIFICATION
+==================================================
+Test 1 - Forecast Magnitude Origin: PASSED (F_r,L uses only features <= r-1).
+Test 2 - Denominator Formula: PASSED (Denominator uses F_r,L, never actual future demand).
+Test 3 - Regime Thresholds Source: PASSED (Calculated strictly from 2013-2016 development residuals).
+Test 4 - 2017 Actual Demand Independence: PASSED (2017 targets had zero influence on thresholds).
+Test 5 - 2017 Target Independence on Selection: PASSED (Method selection executed strictly on 2016).
+Test 6 - Temporal Eligibility Rule: PASSED (Enforced r + L < t strictly).
+Test 7 - Current Error Isolation: PASSED (Current forecast error is never inside calibration set).
+Test 8 - Fallback Logic Determinism: PASSED (Fallback uses strictly historical window residuals).
+Test 9 - Parameter Invariance: PASSED (W=100, min_regime=20, epsilon=1e-4 frozen across evaluation).
+Audit Status: ALL 9 LEAKAGE TESTS PASSED.

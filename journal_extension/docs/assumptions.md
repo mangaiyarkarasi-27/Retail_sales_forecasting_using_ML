@@ -1,0 +1,1 @@
+# Modeling & Domain Assumptions\n\nDocumented assumptions regarding forecasting horizons, inventory lead times, backorder costs, and service levels.\n

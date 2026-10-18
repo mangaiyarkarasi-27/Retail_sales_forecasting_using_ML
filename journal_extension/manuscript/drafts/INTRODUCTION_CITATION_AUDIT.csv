@@ -1,0 +1,19 @@
+Paragraph,Claim,Citation,Source Type,Verified?,Citation Issue
+Para 1 (Context & Motivation),Dynamic retail environment and demand forecasting importance,Tiwari & Prasad (2025),Conference Proceedings (AIMV 2025),YES (In Conference Bib),Verify proceeding page range
+Para 1 (Context & Motivation),"Store-item demand heterogeneity, seasonality, and multi-channel patterns",Mitra et al. (2022); Venkiteela (2025),Peer-Reviewed Journals (OR Forum; IJCESEN),YES,None
+Para 1 (Context & Motivation),Sales and Operations Planning (S&OP) dependence on forecasting,Mustapha & Sithole (2025),Peer-Reviewed Journal (AJSAS),YES,None
+Para 1 (Context & Motivation),Operational failures from forecast errors: stockouts vs overstocking,Spanos et al. (2022); Malik et al. (2024),Peer-Reviewed Journals (Algorithms; JCBI),YES,None
+Para 2 (Point Forecasts & Decision Risk),Point forecasts do not communicate dispersion or tail risk; proper scoring rules,Gneiting & Raftery (2007),Peer-Reviewed Journal (JASA),YES,None
+Para 2 (Point Forecasts & Decision Risk),Asymmetry of operational costs in retail inventory replenishment,Ban & Rudin (2019); Bertsimas & Kallus (2020),Peer-Reviewed Journals (Operations Research),YES,None
+Para 3 (Machine Learning in Retail),"Evolution from univariate linear statistical models (ARIMA, ETS) to ML",Mustapha & Sithole (2025); Yeesin & Kajornkasirat (2024),Peer-Reviewed Journal / Conference (AJSAS; IIPEM),YES,None
+Para 3 (Machine Learning in Retail),GBDT (XGBoost/LightGBM) superiority on structured tabular demand series,Makridakis et al. (2022); Chen & Guestrin (2016); Hobor et al. (2026),Peer-Reviewed Journals / Conferences (IJF; ACM KDD; CROERR),YES,Verify Hobor et al. volume/page details
+Para 3 (Machine Learning in Retail),Global feature pooling across store-item categories,Al Ghurabli et al. (2025),Conference Proceedings (ICBITI 2025),YES,None
+Para 3 (Machine Learning in Retail),Multi-step recursive error compounding and look-ahead feature leakage risk,Tiwari et al. (2026),Peer-Reviewed Journal (Mathematics),YES,None
+Para 4 (Explainability & Conference Baseline),Explainable Intelligent Decision Support System baseline framework,IEEE E-IDSS Conference Paper (2026),Conference Baseline (Project Base),YES (Base Study),Prior conference paper by authors
+Para 4 (Explainability & Conference Baseline),TreeSHAP game-theoretic local and global feature attribution,Lundberg & Lee (2017),Peer-Reviewed Conference (NeurIPS 2017),YES,None
+Para 4 (Explainability & Conference Baseline),XAI resolving the explanation gap and reducing human override rates,"Lin, Lau, & Hu (2026); Narlawar (2025); Chang & Bau (2025)",Peer-Reviewed Journals (AI Review; WJARR; JEBDE),YES,Verify Lin et al. page numbers
+Para 5 (Probabilistic Forecasting & Conformal UQ),Distribution-free conformal prediction framework and finite-sample guarantees,"Vovk, Gammerman, & Shafer (2005); Angelopoulos & Bates (2021)",Foundational Book / Peer-Reviewed Review,YES,None
+Para 5 (Probabilistic Forecasting & Conformal UQ),Parametric Gaussian safety stock assumptions and limitations in retail,"Silver, Pyke, & Peterson (1998)",Classic Textbook (John Wiley & Sons),YES,None
+Para 5 (Probabilistic Forecasting & Conformal UQ),Sequential time-series conformal prediction and rolling residual pooling,"Stankeviciute, Alaa, & van der Schaar (2021); Huber et al. (2019)",Peer-Reviewed Conferences / Journals (ICLR 2021; EJOR 2019),YES,None
+Para 5 & 6 (Distribution Shift),Conformal coverage degradation when exchangeability is violated under shift,"Barber, Candes, Ramdas, & Tibshirani (2023); Tibshirani et al. (2019)",Peer-Reviewed Journals / Conferences (Annals of Statistics; NeurIPS),YES,None
+Para 7 (Inventory Decision Problem),Supply chain integration of forecasting and continuous-review ROP control,Syntetos et al. (2016); Axsäter (2015); Snyder & Shen (2019),Peer-Reviewed Journals / Textbooks (IJPR; Springer; Wiley),YES,None

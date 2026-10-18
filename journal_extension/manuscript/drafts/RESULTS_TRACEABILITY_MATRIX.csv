@@ -1,0 +1,78 @@
+Experiment_ID,Source_Artifact,Metric_Name,Evaluation_Period,Population,Configuration,Reported_Value,Manuscript_Location
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=1 day ahead,6.0416,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=1 day ahead,7.8677,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=2 days ahead,6.0432,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=2 days ahead,7.8667,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=3 days ahead,6.0366,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=3 days ahead,7.8604,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=4 days ahead,6.0384,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=4 days ahead,7.8622,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=5 days ahead,6.0318,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=5 days ahead,7.8556,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=6 days ahead,6.0285,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=6 days ahead,7.8544,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation MAE,2016 Validation,500 Series,h=7 days ahead,6.0518,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Validation RMSE,2016 Validation,500 Series,h=7 days ahead,7.8795,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Aggregate Validation MAE,2016 Validation,500 Series,Direct Multi-Horizon Ensembles,6.0388,Section 4.2 Table 3
+EXP-011,forecasting_results.csv,Aggregate Validation RMSE,2016 Validation,500 Series,Direct Multi-Horizon Ensembles,7.8638,Section 4.2 Table 3
+EXP-012,oos_calibration_residuals.csv,OOS Calibration Residual Rows,2013-2016 Development,500 Series,TimeSeriesSplit Folds,608165,Section 4.3 Prose
+EXP-013,uncertainty_results.csv,Raw Conformal Empirical Coverage,2017 Test Partition,500 Series,L=1 Nominal 90%,29.37%,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Empirical Coverage,2017 Test Partition,500 Series,L=3 Nominal 90%,21.67%,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Empirical Coverage,2017 Test Partition,500 Series,L=5 Nominal 90%,19.47%,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Empirical Coverage,2017 Test Partition,500 Series,L=7 Nominal 90%,17.90%,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Mean Interval Width,2017 Test Partition,500 Series,L=1 Nominal 90%,34.3697,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Mean Interval Width,2017 Test Partition,500 Series,L=7 Nominal 90%,156.4983,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Winkler Score,2017 Test Partition,500 Series,L=1 Nominal 90%,436.5099,Section 4.3 Table 4
+EXP-013,uncertainty_results.csv,Raw Conformal Winkler Score,2017 Test Partition,500 Series,L=7 Nominal 90%,3579.8002,Section 4.3 Table 4
+EXP-014,uncertainty_failure_diagnosis.md,Residual Standard Deviation Ratio,2013-2016 vs 2017 Test,500 Series,Lead Time L=1,3.55x,Section 4.4 Prose
+EXP-014,uncertainty_failure_diagnosis.md,Residual Standard Deviation Ratio,2013-2016 vs 2017 Test,500 Series,Lead Time L=7,4.30x,Section 4.4 Prose
+EXP-014,uncertainty_failure_diagnosis.md,MAE Expansion Ratio,2013-2016 vs 2017 Test,500 Series,Lead Time L=1,3.76x,Section 4.4 Prose
+EXP-014,uncertainty_failure_diagnosis.md,MAE Expansion Ratio,2013-2016 vs 2017 Test,500 Series,Lead Time L=7,4.58x,Section 4.4 Prose
+EXP-014,uncertainty_results.csv,Lower Violation Rate,2017 Test Partition,500 Series,L=1 Raw Nominal 90%,35.31%,Section 4.4 Prose
+EXP-014,uncertainty_results.csv,Upper Violation Rate,2017 Test Partition,500 Series,L=1 Raw Nominal 90%,35.32%,Section 4.4 Prose
+EXP-015,uncertainty_results.csv,Scale-Normalized Empirical Coverage,2017 Test Partition,500 Series,L=1 Nominal 90%,25.54%,Section 4.5 Table 4
+EXP-015,uncertainty_results.csv,Scale-Normalized Empirical Coverage,2017 Test Partition,500 Series,L=3 Nominal 90%,18.31%,Section 4.5 Table 4
+EXP-015,uncertainty_results.csv,Scale-Normalized Empirical Coverage,2017 Test Partition,500 Series,L=5 Nominal 90%,16.34%,Section 4.5 Table 4
+EXP-015,uncertainty_results.csv,Scale-Normalized Empirical Coverage,2017 Test Partition,500 Series,L=7 Nominal 90%,15.23%,Section 4.5 Table 4
+EXP-015,uncertainty_results.csv,Scale-Normalized Winkler Score,2017 Test Partition,500 Series,L=1 Nominal 90%,468.2796,Section 4.5 Table 4
+EXP-016,uncertainty_results.csv,Forecast-Conditional Hard Coverage,2017 Test Partition,500 Series,L=1 Nominal 90%,32.58%,Section 4.6 Table 4
+EXP-016,uncertainty_results.csv,Forecast-Conditional Hard Coverage,2017 Test Partition,500 Series,L=3 Nominal 90%,23.35%,Section 4.6 Table 4
+EXP-016,uncertainty_results.csv,Forecast-Conditional Hard Coverage,2017 Test Partition,500 Series,L=5 Nominal 90%,20.82%,Section 4.6 Table 4
+EXP-016,uncertainty_results.csv,Forecast-Conditional Hard Coverage,2017 Test Partition,500 Series,L=7 Nominal 90%,19.03%,Section 4.6 Table 4
+EXP-016,uncertainty_results.csv,Forecast-Conditional Hard Winkler,2017 Test Partition,500 Series,L=1 Nominal 90%,408.0873,Section 4.6 Table 4
+EXP-016,demand_regime_results.csv,High-Demand Coverage L=1,2017 Test Partition,250 High Series,L=1 Hard Nominal 90%,37.30%,Section 4.6 Prose
+EXP-016,demand_regime_results.csv,Low-Demand Coverage L=1,2017 Test Partition,125 Low Series,L=1 Hard Nominal 90%,22.04%,Section 4.6 Prose
+EXP-018,docs/local_conditional_robustness_018.md,Validation Winkler Plateau Variation,2016 Validation,500 Series,K in [30, 100],<0.67%,Section 4.7 Table 5
+EXP-018,docs/local_conditional_robustness_018.md,Selected Frozen Parameter,2016 Validation,500 Series,Predefined Stability Tie-Breaker,K*=100,Section 4.7 Prose
+EXP-018,uncertainty_results.csv,Frozen K*=100 Test Coverage,2017 Test Partition,500 Series,L=1 Nominal 90%,31.98%,Section 4.7 Table 4
+EXP-018,uncertainty_results.csv,Frozen K*=100 Test Winkler,2017 Test Partition,500 Series,L=1 Nominal 90%,409.6602,Section 4.7 Table 4
+EXP-018,uncertainty_results.csv,Frozen K*=100 Test Winkler,2017 Test Partition,500 Series,L=7 Nominal 90%,3552.9291,Section 4.7 Table 4
+EXP-019,inventory_results.csv,Deterministic Demand-Weighted Fill Rate L=1,2017 Test Partition,500 Series,L=1 Policy A (p=$1.00),46.87%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Conformal Demand-Weighted Fill Rate L=1,2017 Test Partition,500 Series,L=1 Policy B (p=$1.00, 90%),57.51%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Demand-Weighted Fill Rate Delta L=1,2017 Test Partition,500 Series,L=1 Policy B vs A (p=$1.00),+10.64 pp,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Deterministic Demand-Weighted Fill Rate L=3,2017 Test Partition,500 Series,L=3 Policy A (p=$1.00),65.26%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Conformal Demand-Weighted Fill Rate L=3,2017 Test Partition,500 Series,L=3 Policy B (p=$1.00, 90%),73.96%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Demand-Weighted Fill Rate Delta L=3,2017 Test Partition,500 Series,L=3 Policy B vs A (p=$1.00),+8.70 pp,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Deterministic Demand-Weighted Fill Rate L=5,2017 Test Partition,500 Series,L=5 Policy A (p=$1.00),71.35%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Conformal Demand-Weighted Fill Rate L=5,2017 Test Partition,500 Series,L=5 Policy B (p=$1.00, 90%),79.31%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Demand-Weighted Fill Rate Delta L=5,2017 Test Partition,500 Series,L=5 Policy B vs A (p=$1.00),+7.95 pp,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Deterministic Demand-Weighted Fill Rate L=7,2017 Test Partition,500 Series,L=7 Policy A (p=$1.00),75.36%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Conformal Demand-Weighted Fill Rate L=7,2017 Test Partition,500 Series,L=7 Policy B (p=$1.00, 90%),82.64%,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Demand-Weighted Fill Rate Delta L=7,2017 Test Partition,500 Series,L=7 Policy B vs A (p=$1.00),+7.29 pp,Section 4.8 Table 6
+EXP-019,inventory_results.csv,Shortage Units Reduction L=1,2017 Test Partition,500 Series,L=1 Policy B vs A (p=$1.00),-1139914 units (-20.03%),Section 4.9 Table 6
+EXP-019,inventory_results.csv,Shortage Units Reduction L=3,2017 Test Partition,500 Series,L=3 Policy B vs A (p=$1.00),-928208 units (-25.06%),Section 4.9 Table 6
+EXP-019,inventory_results.csv,Shortage Units Reduction L=5,2017 Test Partition,500 Series,L=5 Policy B vs A (p=$1.00),-844860 units (-27.77%),Section 4.9 Table 6
+EXP-019,inventory_results.csv,Shortage Units Reduction L=7,2017 Test Partition,500 Series,L=7 Policy B vs A (p=$1.00),-771130 units (-29.57%),Section 4.9 Table 6
+EXP-019,inventory_results.csv,Order Consolidation Count L=1,2017 Test Partition,500 Series,L=1 Policy B vs A,-5352 orders ($53520 saved),Section 4.9 Table 7
+EXP-019,inventory_results.csv,Total Operating Cost Delta L=1,2017 Test Partition,500 Series,L=1 Policy B vs A (p=$1.00),-$790833.91 (-10.83%),Section 4.10 Table 7
+EXP-019,inventory_results.csv,Total Operating Cost Delta L=3,2017 Test Partition,500 Series,L=3 Policy B vs A (p=$1.00),+$413089.61 (+5.99%),Section 4.10 Table 7
+EXP-019,inventory_results.csv,Total Operating Cost Delta L=5,2017 Test Partition,500 Series,L=5 Policy B vs A (p=$1.00),+$1434777.35 (+16.83%),Section 4.10 Table 7
+EXP-019,inventory_results.csv,Total Operating Cost Delta L=7,2017 Test Partition,500 Series,L=7 Policy B vs A (p=$1.00),+$2356598.91 (+22.25%),Section 4.10 Table 7
+EXP-019,cost_sensitivity_results.csv,Conformal Total Cost L=3 p=$4,2017 Test Partition,500 Series,L=3 Policy B vs A (p=$4.00),-$2371533.83 (-13.17%),Section 4.10 Table 8
+EXP-019,cost_sensitivity_results.csv,Conformal Total Cost L=5 p=$4,2017 Test Partition,500 Series,L=5 Policy B vs A (p=$4.00),-$1099802.08 (-6.23%),Section 4.10 Table 8
+EXP-019,statistical_results.csv,Mean Series-Level Fill Rate Delta L=1,2017 Test Partition,500 Series,L=1 Primary Policy B vs A,+10.36 pp,Section 4.12 Table 10
+EXP-019,statistical_results.csv,Wilcoxon p-value Fill Rate L=1,2017 Test Partition,500 Paired Series,L=1 Primary Policy B vs A,1.26 x 10^-83,Section 4.12 Table 10
+EXP-019,statistical_results.csv,Wilcoxon p-value Fill Rate L=3,2017 Test Partition,500 Paired Series,L=3 Primary Policy B vs A,5.69 x 10^-83,Section 4.12 Table 10
+EXP-019,statistical_results.csv,Wilcoxon p-value Total Cost L=1,2017 Test Partition,500 Paired Series,L=1 Primary Policy B vs A,6.65 x 10^-55,Section 4.12 Table 10
+EXP-019,statistical_results.csv,Bootstrap 95% CI Mean Series Fill Rate L=1,2017 Test Partition,1000 Resamples,L=1 Primary Policy B vs A,[+10.19 pp, +10.55 pp],Section 4.12 Table 10
+EXP-019,statistical_results.csv,Bootstrap 95% CI Mean Series Cost Delta L=1,2017 Test Partition,1000 Resamples,L=1 Primary Policy B vs A,[-$1735.40, -$1434.24],Section 4.12 Table 10

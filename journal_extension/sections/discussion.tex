@@ -1,0 +1,42 @@
+\section{Discussion}
+
+\subsection{Interpretation of Point-Forecasting Findings}
+The empirical results in Section 4.1 demonstrate that a direct multi-horizon GBDT architecture ($M_1, \dots, M_7$) achieves high predictive accuracy ($\text{MAE} \approx 6.04$ on validation and $\text{MAE} \approx 7.64$ on test data) while maintaining strict decision-time safety ($\tau \ge 7$ days). Decoupling horizon estimation eliminated the compounding error propagation characteristic of recursive autoregressive forecasting, ensuring stable performance across all multi-day lead times.
+
+Importantly, feature importance attributions derived via TreeSHAP confirmed that historical lag features at decision-time boundaries ($y_{t-7}, y_{t-14}$) and rolling seasonal averages were the primary drivers of predictive performance. By enforcing a minimum lag constraint of $\ge 7$ days, the feature pipeline eliminated look-ahead leakage, ensuring that the model relies strictly on information available at forecast origin. However, despite strong point-forecast accuracy, point forecasts alone provided no information regarding forecast error dispersion, highlighting the need for calibrated uncertainty bounds.
+
+\subsection{Interpretation of Uncertainty Quantification and Distribution Shift Findings}
+The empirical evaluation of conformal prediction under forward temporal shift (Section 4.3 and Section 4.4) yields fundamental theoretical and practical insights. On the untouched 2017 test holdout, raw rolling conformal prediction experienced severe empirical under-coverage ($17.90\%-29.37\%$ at nominal $90\%$ confidence).
+
+Our diagnostic location-scale decomposition revealed that this coverage breakdown was driven by a $3.55\times$ to $4.30\times$ expansion in residual standard deviation alongside quarterly seasonal phase shifts ($p < 10^{-42}$). Because standard conformal prediction theory relies on data exchangeability between calibration and test samples \cite{vovk2005algorithmic, angelopoulos2021gentle}, forward nonstationarity and scale growth violate the foundational assumptions of exact finite-sample coverage.
+
+Relative forecast-conditional scaling ($s = |e| / (\hat{D} + \epsilon)$) significantly improved interval efficiency, lowering mean Winkler score to $409.66$ ($p = 1.44 \times 10^{-28}$) and boosting top-decile high-demand coverage by $+8.80$ percentage points. By scaling nonconformity bounds proportionally to predicted demand volume, forecast conditioning adapts interval width to volume heteroskedasticity. Nevertheless, forecast conditioning did not fully restore nominal 90\% coverage under severe forward shift, proving that post-hoc scaling cannot completely neutralize structural residual variance expansion.
+
+\subsection{Interpretation of Inventory Service and Cost Trade-Offs}
+Translating forecast-conditional conformal bounds into dynamic safety stock buffers ($ROP = \hat{D} + SS$) produced major operational improvements in discrete-event simulation (Section 4.6). Across all evaluated lead times ($L \in \{1, 3, 5, 7\}$ days), uncertainty-aware replenishment increased portfolio demand-weighted fill rate by $+7.29$ to $+10.64$ percentage points ($p < 10^{-75}$) and cut annual lost sales volume by $20.03\%$ to $29.57\%$ (saving up to $1.14$ million units of unmet customer demand).
+
+However, the financial evaluation (Section 4.8 and Section 4.9) revealed a critical managerial insight: improving customer service does not imply universal operating cost reduction. At single-day replenishment ($L=1$) under baseline shortage penalty $p=\$1.00$, conformal buffering reduced total annual operating costs by $-10.83\%$ (saving $\$790,834$, $p = 6.65 \times 10^{-55}$), as shortage savings ($-\$1.14\text{M}$) and order batching savings ($-\$53.5\text{k}$) exceeded holding cost increases ($+\$402.6\text{k}$).
+
+Conversely, at multi-day lead times ($L \ge 3$) under $p=\$1.00$, continuous safety stock holding costs exceeded shortage savings (+5.99\% total cost at $L=3$, +16.83\% at $L=5$, +22.25\% at $L=7$). Because safety stock must cover cumulative multi-day forecast variance ($\hat{D}_{t,L}$), carrying safety inventory continuously under low unit shortage penalties creates a holding cost burden.
+
+Our shortage cost sensitivity analysis (Table 8) identified the precise economic crossover boundary: whenever unit shortage penalties exceed $\$2.00/\text{unit}$ (representing high-margin products or severe customer defection penalties), conformal replenishment achieves lower total operating costs across multi-day horizons, generating net annual savings of $-\$515,118$ at $L=3, p=\$2.00$ and $-\$2.37\text{M}$ at $L=3, p=\$4.00$.
+
+\subsection{Comparison with Existing Literature}
+The findings of this study align with and extend key insights from recent forecasting and operations research literature. Consistent with the empirical findings of the M5 competition \cite{makridakis2022m5} and recent retail benchmarking studies \cite{hobor2026comparative}, GBDT architectures demonstrated strong point-forecasting performance on structured tabular demand series.
+
+Regarding uncertainty quantification, our observation of conformal coverage degradation under temporal shift reinforces recent mathematical arguments by Barber et al. \cite{barber2023conformal} and Tibshirani et al. \cite{tibshirani2019conformal}, who demonstrated that exchangeability breakdowns erode finite-sample guarantees. While papers introducing conformal time-series forecasting \cite{stankeviciute2021conformal, huber2019integrating} evaluated intervals under near-stationary splits, our multi-year temporal holdout highlights the practical necessity of scale adaptation and residual shift monitoring.
+
+In inventory decision support, our results confirm the insights of Ban \& Rudin \cite{ban2019big} and Bertsimas \& Kallus \cite{bertsimas2020predictive}, proving that symmetric forecasting error metrics do not reflect asymmetric downstream inventory penalties. By providing portfolio-level empirical cost-service frontiers across lead times and penalty regimes, this study bridges machine learning uncertainty quantification with continuous-review replenishment execution.
+
+\subsection{Practical and Managerial Implications}
+The empirical results provide four actionable takeaways for supply chain practitioners and enterprise analytics leaders:
+
+\begin{enumerate}
+    \item \textbf{Point Accuracy Is Insufficient for Sizer Sizing}: Deploying deterministic point forecasts without uncertainty buffering exposes retail operations to severe stockout risks, even when predictive models achieve strong point accuracy ($\text{MAE} \approx 6.04$).
+    \item \textbf{Uncertainty Quantification Must Be Scale-Adaptive}: In portfolios exhibiting high demand variance, nonconformity bounds must scale relative to forecasted demand volume ($s = |e| / (\hat{D} + \epsilon)$) to maintain interval efficiency across fast-moving and slow-moving SKUs.
+    \item \textbf{Lead Time Dictates Holding Burden}: Supply chain managers must recognize that the inventory holding cost of uncertainty buffers scales non-linearly with replenishment lead time. Short-cycle replenishment ($L=1$) allows aggressive uncertainty buffering, whereas multi-day lead times ($L \ge 3$) require explicit financial justification based on product margin.
+    \item \textbf{Shortage Penalty Structure Governs Policy Choice}: Conformal safety buffering is economically optimal for high-margin categories ($p \ge \$2.00/\text{unit}$) or critical items where stockouts lead to permanent customer defection.
+\end{enumerate}
+
+\subsection{Scientific and Methodological Implications}
+From a scientific perspective, this study demonstrates the necessity of joint predictive-prescriptive evaluation frameworks. Evaluating demand forecasting algorithms solely through statistical error metrics (MAE, RMSE) provides an incomplete assessment of operational utility. Researchers in applied machine learning should evaluate forecasting models within downstream decision environments, incorporating leakage-control protocols, distribution-shift diagnostics, and economic penalty sensitivity.

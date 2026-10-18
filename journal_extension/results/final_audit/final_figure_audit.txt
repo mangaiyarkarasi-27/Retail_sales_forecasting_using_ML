@@ -1,0 +1,76 @@
+EXP-020 FINAL PUBLICATION FIGURE AUDIT
+================================================================================
+Total Figures Audited: 14
+Auditing Criteria: Axis labels, units, legend consistency, policy labels, data integrity, zero future-leakage.
+--------------------------------------------------------------------------------
+Figure: fill_rate_by_lead_time.png [EXISTS, 96.2 KB]
+  Title: Fill Rate by Lead Time (Policy A vs Policy B)
+  Axes: Y='Fill Rate (0-1.0)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: stockout_rate_by_lead_time.png [EXISTS, 124.4 KB]
+  Title: Stockout Rate by Lead Time
+  Axes: Y='Stockout Rate (0-1.0)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: shortage_units_by_lead_time.png [EXISTS, 108.1 KB]
+  Title: Shortage Units by Lead Time
+  Axes: Y='Shortage Units (Millions)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: average_inventory_by_lead_time.png [EXISTS, 115.9 KB]
+  Title: Average On-Hand Inventory by Lead Time
+  Axes: Y='Average Inventory (Units)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: total_cost_by_lead_time.png [EXISTS, 107.5 KB]
+  Title: Total Operational Cost by Lead Time
+  Axes: Y='Total Cost ($ Millions)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: cost_breakdown_bars.png [EXISTS, 113.1 KB]
+  Title: Cost Component Breakdown (Holding, Ordering, Shortage)
+  Axes: Y='Cost ($ Millions)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: cost_service_frontier.png [EXISTS, 183.9 KB]
+  Title: Cost-Service Efficient Frontier (Fill Rate vs Total Cost)
+  Axes: Y='Fill Rate (%)', X='Total Cost ($ Millions)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: shortage_penalty_sensitivity.png [EXISTS, 197.4 KB]
+  Title: Shortage Penalty Sensitivity (p=$0.60 to $4.00)
+  Axes: Y='Total Cost ($ Millions)', X='Shortage Penalty ($)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: coverage_policy_comparison.png [EXISTS, 108.4 KB]
+  Title: Nominal Coverage Policy Comparison (80%, 90%, 95%)
+  Axes: Y='Fill Rate (%)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: demand_regime_comparison.png [EXISTS, 101.3 KB]
+  Title: Demand Regime Sliced Performance (Medium vs High)
+  Axes: Y='Fill Rate (%)', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: cost_difference_distribution.png [EXISTS, 149.4 KB]
+  Title: Per-Series Cost Difference Distribution (Conf - Det)
+  Axes: Y='Cost Delta ($)', X='Store-Item Series Density'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: fill_rate_improvement_distribution.png [EXISTS, 149.7 KB]
+  Title: Per-Series Fill Rate Improvement Distribution
+  Axes: Y='Fill Rate Delta (pp)', X='Store-Item Series Density'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: service_vs_inventory_tradeoff.png [EXISTS, 276.4 KB]
+  Title: Service Level vs Average Inventory Tradeoff
+  Axes: Y='Fill Rate (%)', X='Average Ending Inventory'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+Figure: lead_time_cost_service_comparison.png [EXISTS, 171.4 KB]
+  Title: Comprehensive Lead Time Cost-Service Multi-Panel
+  Axes: Y='Cost & Service Metrics', X='Lead Time (1,3,5,7)'
+  Audit Status: PASSED
+--------------------------------------------------------------------------------
+FINAL FIGURE AUDIT VERDICT: ALL 14 PUBLICATION FIGURES VERIFIED AND PASSED.

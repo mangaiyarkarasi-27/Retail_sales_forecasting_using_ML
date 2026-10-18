@@ -1,0 +1,37 @@
+Category,Parameter_Name,Symbol,Frozen_Value,Evaluation_Grid,Selection_Protocol,Temporal_Source_Safeguard
+Partitioning,Training Period,T_train,2013-01-01 to 2015-12-31,Fixed 3-year window,Historical training baseline,Pre-2016 historical records only
+Partitioning,Validation Period,T_val,2016-01-01 to 2016-12-31,Fixed 1-year window,Hyperparameter tuning and UQ selection,Zero 2017 data accessed
+Partitioning,Test Period,T_test,2017-01-01 to 2017-12-31,Fixed 1-year window,Untouched out-of-sample operational test,Completely frozen until final evaluation
+Partitioning,Portfolio Scale,N,500 series,10 stores x 50 items,Full retail portfolio benchmark,All series present in 2013-2017
+Partitioning,Horizon Length,H,7 days,h in {1..7},Operational weekly replenishment cycle,Direct multi-model coverage
+Forecasting,Algorithm,M_h,Extreme Gradient Boosting (XGBoost),Fixed GBDT architecture,Empirical superiority on tabular demand,Trained on 2013-2015 only
+Forecasting,Number of Trees,K_T,100,[50, 100, 200],Validation error convergence on 2016,Tuned on 2016 validation partition
+Forecasting,Maximum Tree Depth,d_max,6,[4, 6, 8],Validation error minimization on 2016,Tuned on 2016 validation partition
+Forecasting,Learning Rate,eta,0.1,[0.05, 0.1, 0.2],Validation error minimization on 2016,Tuned on 2016 validation partition
+Forecasting,Subsample Ratio,s_sub,0.8,[0.7, 0.8, 1.0],Regularization to prevent overfitting,Tuned on 2016 validation partition
+Forecasting,Column Subsample Ratio,s_col,0.8,[0.7, 0.8, 1.0],Feature subsampling regularization,Tuned on 2016 validation partition
+Forecasting,L1 Regularization,alpha_L1,0.1,[0.0, 0.1, 1.0],Sparsity penalty on leaf weights,Tuned on 2016 validation partition
+Forecasting,L2 Regularization,lambda_L2,1.0,[0.1, 1.0, 10.0],Smoothness penalty on leaf weights,Tuned on 2016 validation partition
+Forecasting,Minimum Feature Lag,tau_min,7 days,tau >= 7,Strict multi-horizon temporal isolation,Guarantees lag >= 7 for all h in {1..7}
+Forecasting,Autoregressive Lags,Lags,"{7, 14, 30}","{7, 14, 30} days",Domain seasonality and monthly cycles,Derived from t <= t-7
+Forecasting,Rolling Windows,Windows,"{7, 30}","{7, 30} days",Short and medium momentum smoothing,Derived from t <= t-7
+Forecasting,Random Seed,seed,42,Fixed,Reproducibility governance,Pre-set seed
+Conformal UQ,Methodology,Method,Rolling Forecast-Conditional,Raw vs Scaled vs Conditional,Validation Winkler loss minimization,Selected on 2016 validation partition
+Conformal UQ,Sliding Window Size,W,100 days,[30, 50, 100, 150, 200],Robustness audit in EXP-018,Selected on 2016 validation partition
+Conformal UQ,Neighborhood Size,K*,100,[10, 20, 30, 50, 100],Validation stability plateau in EXP-018,Tuned on 2016 validation partition
+Conformal UQ,Numerical Epsilon,epsilon,0.0001,Fixed 1e-4,Prevents zero-division on intermittency,Pre-specified constant
+Conformal UQ,Minimum Observations,W_min,20,Fixed 20,Fallback threshold for initial warm-up,Pre-specified safeguard
+Conformal UQ,Nominal Coverage Levels,beta,0.90,"{0.80, 0.90, 0.95}",Managerial service risk parameter grid,Exogenously specified targets
+Conformal UQ,Residual Eligibility Constraint,r_elig,r <= t - L - 1,Strict inequality,Prevents lead-time look-ahead leakage,Enforced dynamically at decision time t
+Conformal UQ,Quantile Correction Formula,k_beta,ceil((W+1)*beta)/W,Standard finite-sample correction,Conformal prediction literature standard,Exact finite-sample formula
+Inventory,Evaluation Lead Times,L,1 day,"{1, 3, 5, 7} days",Multi-horizon supplier delivery cycles,Evaluated across all L in {1, 3, 5, 7}
+Inventory,Initial On-Hand Stock,OH_1,L * mu_i^(pre-2017),Dynamic per series,Lead-time average demand buffering,Computed strictly on 2013-2016 sales
+Inventory,Initial Pipeline Stock,OO_0,0 units,Fixed 0,Empty initial order pipeline,Standard simulation protocol
+Inventory,Unmet Demand Handling,Discipline,Lost Sales,Lost sales (no backorders),Retail multi-channel customer behavior,Standard retail assumption
+Inventory,End-of-Horizon Truncation,T_cutoff,T - L,Final L days dropped,Eliminates pipeline truncation artifacts,Pre-specified boundary safeguard
+Financial Cost,Fixed Order Cost,K_order,$10.00 per order,Fixed $10.00,Commercial purchase order processing,Pre-specified baseline parameter
+Financial Cost,Daily Unit Holding Cost,h,$0.20 per unit/day,Fixed $0.20,Commercial warehouse storage and capital,Pre-specified baseline parameter
+Financial Cost,Unit Shortage Penalty,p,$1.00 per unit,"{$0.60, $1.00, $2.00, $4.00}",Asymmetric penalty sensitivity grid,Baseline $1.00; sensitivity evaluated
+Statistical,Wilcoxon Test Level,alpha_sig,0.01,Fixed 0.01,Two-sided significance threshold,Pre-specified standard
+Statistical,Bootstrap Iterations,B,1000 resamples,Fixed 1000,Non-parametric 95% CI construction,Pre-specified standard
+Statistical,Demand Regime Split,Median_split,45 units/day,Medium (<=45) vs High (>45),Pre-2017 historical median demand,Derived strictly from 2013-2016 sales

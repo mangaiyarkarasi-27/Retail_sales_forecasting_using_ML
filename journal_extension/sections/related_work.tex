@@ -1,0 +1,71 @@
+\section{Related Work}
+
+\subsection{Retail Demand Forecasting}
+Retail demand forecasting has evolved from classical statistical models to modern machine learning architectures. Early forecasting workflows relied heavily on univariate statistical techniques such as Autoregressive Integrated Moving Average (ARIMA) and Exponential Smoothing (ETS) \cite{mustapha2025forecasting}. While statistical benchmarks perform well on stationary, low-dimensional time series, they operate under linear assumptions and struggle to capture complex cross-series dependencies, non-linear promotional dynamics, and multi-channel demand interactions \cite{syntetos2016supply, yeesin2024application}. 
+
+In modern retail analytics, gradient boosted decision tree (GBDT) algorithms, including XGBoost and LightGBM, have established themselves as dominant forecasting paradigms \cite{chen2016xgboost, hobor2026comparative}. In large-scale empirical benchmarks such as the M5 forecasting competition, GBDT architectures routinely outperformed complex deep neural networks on tabular demand time series \cite{makridakis2022m5}. GBDTs excel at pooling cross-series information across large store-item portfolios, capturing shared seasonal patterns, calendar effects, and price elasticity \cite{mitra2022comparative, alghurabli2025ai}. However, existing forecasting studies predominantly focus on point-forecast error minimization on static test splits, paying limited attention to decision-time feature availability or downstream operational execution.
+
+\subsection{Machine-Learning and Multi-Horizon Forecasting Protocols}
+Multi-step forecasting in supply chain applications can be implemented through recursive, direct, or joint neural multi-horizon architectures \cite{tiwari2026explainable}. Recursive multi-step forecasting trains a single model for horizon $h=1$ and recursively feeds predictions back as input lags for subsequent horizons $h=2,\dots,H$. While computationally parameter-efficient, recursive forecasting suffers from compounding error propagation, where early prediction errors accumulate rapidly over expanding horizons \cite{syntetos2016supply}.
+
+Alternatively, direct multi-horizon forecasting trains $H$ independent regressors $M_1,\dots,M_H$, each specialized to predict a specific future horizon $h$ \cite{tiwari2026explainable}. Direct formulations eliminate recursive error compounding because each model directly maps historical observations to its target horizon. However, multi-horizon feature pipelines introduce significant temporal leakage risks if rolling features or lag transformations inadvertently access target observations within the lead-time window \cite{tiwari2026explainable}. Enforcing strict decision-time isolation, where all input features for all horizons $h \in \{1,\dots,H\}$ are generated strictly prior to the forecast origin $t$, is essential for decision-time-safe operational deployment.
+
+\subsection{Explainable AI in Retail Decision Support}
+As machine learning models grow in complexity, their black-box nature creates an explanation gap in enterprise operations \cite{lin2026critical}. Store managers, inventory planners, and supply chain directors are often reluctant to trust automated machine learning forecasts when the underlying predictive drivers are opaque, leading to subjective forecast overrides and suboptimal order adjustments \cite{chaganti2026, chang2025explainable}.
+
+To enhance model transparency, post-hoc Explainable AI (XAI) frameworks have been integrated into enterprise business intelligence systems \cite{narlawar2025explainable, madabhushini2025}. SHapley Additive exPlanations (SHAP), grounded in cooperative game theory, provides mathematically rigorous local and global feature attributions \cite{lundberg2017unified}. In our baseline conference work \cite{e_idss_ieee}, we introduced the Explainable Intelligent Decision Support System (E-IDSS), which leveraged TreeSHAP to decompose retail sales forecasts into actionable feature importances. While feature attributions effectively explain past model predictions, post-hoc XAI does not quantify forward predictive uncertainty or prescribe inventory safety buffers.
+
+\subsection{Uncertainty Quantification and Conformal Prediction}
+Deterministic point forecasts provide conditional expected demand but offer no measure of predictive variance or tail risk \cite{gneiting2007strictly}. Classical inventory theory addresses uncertainty by constructing safety stock buffers based on assumed parametric demand distributions, such as normal or Poisson distributions \cite{silver1998inventory, axsaeter2015inventory}. However, empirical retail demand series frequently exhibit heavy tails, zero-inflation, and heteroskedasticity, causing parametric Gaussian assumptions to severely underestimate extreme demand events \cite{syntetos2016supply}.
+
+Conformal prediction (CP), introduced by Vovk et al. \cite{vovk2005algorithmic}, provides a non-parametric, model-agnostic framework for constructing valid prediction intervals with finite-sample coverage guarantees \cite{angelopoulos2021gentle}. Given a target miscoverage level $\alpha \in (0, 1)$, conformal prediction constructs a prediction region $\hat{C}(X)$ such that $\mathbb{P}(Y \in \hat{C}(X)) \ge 1 - \alpha$. When extended to time series, rolling-origin conformal calibration pools allow dynamic estimation of empirical error quantiles \cite{stankeviciute2021conformal, huber2019integrating}. Scale-normalized nonconformity scores, which divide absolute residuals by point-forecast magnitudes or local dispersion estimates, adapt interval width to demand volume \cite{angelopoulos2021gentle}.
+
+\subsection{Distribution Shift and Temporal Robustness}
+The exact finite-sample coverage guarantees of conformal prediction strictly depend on the assumption of data exchangeability \cite{vovk2005algorithmic, angelopoulos2021gentle}. In real-world retail environments, temporal distribution shifts, nonstationarity, trend acceleration, and seasonal phase swings routinely violate exchangeability \cite{barber2023conformal}. Under temporal distribution shift, historical calibration residuals no longer accurately represent future error distributions, leading to severe empirical coverage degradation \cite{tibshirani2019conformal, gibbs2021adaptive}.
+
+While recent theoretical work explores adaptive conformal inference and covariate-shift reweighting \cite{tibshirani2019conformal, gibbs2021adaptive}, limited empirical research characterizes how scale-adaptive nonconformity scores behave under multi-year retail holdouts. Evaluating interval efficiency (Winkler loss), high-demand coverage, and calibration window stability across varying calibration parameters is critical for understanding the practical boundaries of conformal uncertainty quantification in supply chain systems.
+
+\subsection{Forecasting-to-Inventory Decision Support}
+In retail supply chain management, forecasting is not an end in itself; its primary purpose is to inform inventory replenishment decisions \cite{syntetos2016supply, huber2019integrating}. In continuous-review $(r, Q)$ inventory control systems, replenishment orders are triggered when the inventory position (on-hand plus on-order stock) falls to or below the Reorder Point ($ROP$) \cite{axsaeter2015inventory, snyder2019fundamentals}:
+
+\begin{equation}
+ROP_{t,L} = \hat{D}_{t,L} + SS_{t,L}
+\end{equation}
+
+where $\hat{D}_{t,L}$ is expected cumulative demand over supplier lead time $L$, and $SS_{t,L}$ is a safety stock buffer designed to absorb demand volatility \cite{silver1998inventory}.
+
+Modern prescriptive analytics frameworks, such as the Big Data Newsvendor \cite{ban2019big} and Empirical Risk Minimization \cite{bertsimas2020predictive}, directly solve for replenishment quantities under asymmetric holding and shortage costs. However, these methods often require customized optimization formulations that are difficult to integrate into standard enterprise Enterprise Resource Planning (ERP) software. Translating non-parametric conformal quantile bounds into dynamic safety stock buffers provides an intuitive bridge between machine learning uncertainty quantification and continuous-review replenishment execution \cite{huber2019integrating}.
+
+\subsection{Portfolio-Level Cost-Service Trade-Offs}
+Inventory performance involves inherently conflicting objectives: maximizing customer service level (fill rate) while minimizing total operating costs, including order placement overhead, inventory holding investment, and stockout penalties \cite{silver1998inventory, snyder2019fundamentals}. Traditional forecasting evaluations assess models purely on statistical error metrics (MAE, RMSE), which treat over-prediction and under-prediction symmetrically \cite{gneiting2007strictly}. In lost-sales retail environments, under-forecasting results in immediate lost revenue and customer defection, whereas over-forecasting leads to incremental holding costs \cite{spanos2022application, malik2024sales}.
+
+Evaluating uncertainty-aware replenishment requires continuous discrete-event simulation across multi-day lead times and varying shortage penalty settings \cite{huber2019integrating}. Mapping the empirical cost-service trade-off frontier reveals the precise operational conditions under which conformal safety stock generates net financial savings versus situations where holding costs exceed shortage penalties.
+
+\subsection{Research Gap Synthesis and Literature Positioning}
+Table~\ref{tab:literature_matrix} synthesizes the key literature streams, highlighting the position of this study relative to existing state-of-the-art contributions.
+
+\begin{table}[htbp]
+\centering
+\caption{Theoretical and Empirical Methodological Comparison Matrix with Existing Literature}
+\label{tab:literature_matrix}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Study / Literature Stream} & \textbf{Direct Multi-Horizon} & \textbf{Decision-Time Safe} & \textbf{Conformal UQ} & \textbf{Shift Analysis} & \textbf{Inventory Simulation} & \textbf{Cost Sensitivity} \\
+\midrule
+Makridakis et al. (2022) \cite{makridakis2022m5} & Partial & No & No & No & No & No \\
+Syntetos et al. (2016) \cite{syntetos2016supply} & No & No & No & No & Theoretical & Theoretical \\
+Lundberg \& Lee (2017) \cite{lundberg2017unified} & N/A & N/A & No & No & No & No \\
+Stankeviciute et al. (2021) \cite{stankeviciute2021conformal} & Yes & No & Yes & Partial & No & No \\
+Barber et al. (2023) \cite{barber2023conformal} & No & No & Yes & Theoretical & No & No \\
+Ban \& Rudin (2019) \cite{ban2019big} & No & Yes & No & No & Analytical & Yes \\
+Huber et al. (2019) \cite{huber2019integrating} & Single-step & Yes & Parametric & No & Discrete-event & Partial \\
+Mangaiyarkarasi et al. (2026) [Conference] \cite{e_idss_ieee} & Single-step & Standard lag & MCDA Score & No & No & No \\
+\textbf{This Journal Extension} & \textbf{7 Decoupled Models} & \textbf{Strict ($\tau \ge 7$)} & \textbf{Forecast-Conditional} & \textbf{Location-Scale} & \textbf{8-Step Daily Engine} & \textbf{4x4 Sensitivity Grid} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+As shown in Table~\ref{tab:literature_matrix}, existing studies typically isolate individual components of the demand planning pipeline. Forecasting benchmarks emphasize point accuracy, conformal prediction papers analyze theoretical coverage under exchangeability, and operations research papers evaluate replenishment under stylized parametric distributions. This study bridges these domains by providing an end-to-end, empirical evaluation connecting decision-time-safe multi-horizon forecasting, rolling forecast-conditional conformal calibration under temporal shift, and discrete-event inventory simulation across a 500 store-item portfolio.

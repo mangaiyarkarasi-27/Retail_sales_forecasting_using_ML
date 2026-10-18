@@ -1,0 +1,20 @@
+# Verified Demand Profiling Configuration
+
+dataset:
+  train_split_pct: 0.8
+  sort_by: "date"
+
+profiling_parameters:
+  min_observations: 100
+  adi_threshold: 1.32
+  cv_sq_threshold: 0.49
+  trend_threshold: 0.20
+  seasonality_threshold: 0.30
+
+routing_parameters:
+  baseline_seasonality_threshold: 0.30
+  calibrated_seasonality_threshold: 0.45
+
+output_files:
+  profiles_csv: "journal_extension/results/model_selection/demand_profiles.csv"
+  summary_csv: "journal_extension/results/model_selection/demand_profile_summary.csv"

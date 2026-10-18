@@ -1,0 +1,273 @@
+\section{Methodology}
+
+\subsection{Overall System Architecture}
+The proposed decision-support framework integrates four interconnected operational modules: (1) a decision-time-safe direct multi-horizon forecasting pipeline, (2) an out-of-sample residual calibration layer, (3) a rolling forecast-conditional conformal uncertainty engine, and (4) an 8-step daily discrete-event inventory replenishment simulator.
+
+The overall research methodology and system architecture of the proposed decision-support framework is presented in Fig.~\ref{fig:system_architecture}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{}
+\caption{System architecture of the intelligent retail sales forecasting and decision-support framework.}
+\label{fig:system_architecture}
+\end{figure}
+
+As illustrated in Fig.~\ref{fig:system_architecture}, the framework operates sequentially across four integrated modules. Historical daily sales records undergo decision-time-safe feature transformation, enforcing a minimum lag constraint ($\tau \ge 7$ days) to prevent temporal leakage. Seven decoupled direct XGBoost regressors ($M_1,\dots,M_7$) generate point forecasts across horizons $h \in \{1,\dots,7\}$. Out-of-sample residuals derived from cross-validation populate a rolling calibration pool ($W=100, K^*=100$), which computes forecast-conditional conformal quantiles to scale prediction intervals. Finally, the upper conformal bounds are directly translated into dynamic safety stock buffers ($ROP = \hat{D} + SS$) within an 8-step daily discrete-event replenishment simulator under lost-sales dynamics.
+
+\subsection{Dataset and Temporal Partitioning}
+The empirical investigation utilizes the benchmark Store Item Demand Forecasting dataset, comprising 500 heterogeneous daily sales time series across 10 retail stores and 50 item SKUs over a 5-year longitudinal span (January 1, 2013 to December 31, 2017), yielding 913,000 daily observations.
+
+Table~\ref{tab:dataset_summary} summarizes the dataset properties and temporal partitioning structure.
+
+\begin{table}[htbp]
+\centering
+\caption{Dataset Summary and Chronological Partitioning Structure}
+\label{tab:dataset_summary}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Partition Name} & \textbf{Date Range} & \textbf{Days Count} & \textbf{Observations Count} & \textbf{Percentage Share (\%)} \\
+\midrule
+Training Set ($T_{\text{train}}$) & Jan 1, 2013 -- Dec 31, 2015 & 1,095 days & 547,500 & 60.0\% \\
+Validation Set ($T_{\text{val}}$) & Jan 1, 2016 -- Dec 31, 2016 & 366 days & 183,000 & 20.0\% \\
+Test Holdout ($T_{\text{test}}$) & Jan 1, 2017 -- Dec 31, 2017 & 365 days & 182,500 & 20.0\% \\
+\midrule
+\textbf{Full Portfolio Total} & \textbf{Jan 1, 2013 -- Dec 31, 2017} & \textbf{1,826 days} & \textbf{913,000} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+As detailed in Table~\ref{tab:dataset_summary}, the dataset is partitioned into three non-overlapping temporal sets to ensure strict chronological evaluation and prevent data leakage:
+
+\begin{itemize}
+    \item \textbf{Training Partition} ($T_{\text{train}}$): January 1, 2013 to December 31, 2015 (3 full years, 1,095 days, 547,500 observations, 60.0\% of total data).
+    \item \textbf{Validation Partition} ($T_{\text{val}}$): January 1, 2016 to December 31, 2016 (1 full year, 366 days, 183,000 observations, 20.0\% of total data).
+    \item \textbf{Out-of-Sample Test Holdout} ($T_{\text{test}}$): January 1, 2017 to December 31, 2017 (1 full year, 365 days, 182,500 observations, 20.0\% of total data).
+\end{itemize}
+
+\subsection{Decision-Time-Safe Feature Engineering}
+To ensure decision-time safety across multi-day supplier lead times ($L \le 7$ days), all feature extraction functions enforce a strict minimum lag constraint of $\tau \ge 7$ days. For any forecast origin $t$, no observation realized after day $t-7$ is accessed by the feature matrix.
+
+The temporal availability protocol enforcing the minimum lag constraint of $\tau \ge 7$ days is depicted in Fig.~\ref{fig:temporal_availability}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{}
+\caption{Decision-time feature availability protocol enforcing a minimum lag constraint of $\tau \ge 7$ days.}
+\label{fig:temporal_availability}
+\end{figure}
+
+As shown in Fig.~\ref{fig:temporal_availability}, for any forecast origin $t$, an order placed for delivery at $t+L$ (where $L \le 7$) only accesses sales data realized at or before $t-7$. This guarantees that across all evaluation horizons $h \in \{1,\dots,7\}$, zero intermediate sales observations $y_{t-6},\dots,y_t$ enter the feature matrix.
+
+Formally, let $y_{i,s,t}$ denote historical daily sales for item $i$ at store $s$ on day $t$. The feature vector $\mathbf{x}_{i,s,t} \in \mathbb{R}^{45}$ is constructed across ten distinct feature categories:
+
+\begin{equation}
+\mathbf{x}_{i,s,t} = \left[ \mathbf{f}_{\text{calendar}}(t), \mathbf{f}_{\text{lag}}(i,s,t), \mathbf{f}_{\text{roll}}(i,s,t), \mathbf{f}_{\text{ewma}}(i,s,t), \mathbf{f}_{\text{ratio}}(i,s,t), \mathbf{f}_{\text{diff}}(i,s,t), \mathbf{f}_{\text{target\_enc}}(i,s,t) \right]
+\end{equation}
+
+1. \textbf{Direct Lag Features}: Lags at decision-time boundaries:
+\begin{equation}
+\mathbf{f}_{\text{lag}}(i,s,t) = \left[ y_{i,s,t-7}, y_{i,s,t-8}, y_{i,s,t-9}, y_{i,s,t-14}, y_{i,s,t-21}, y_{i,s,t-28}, y_{i,s,t-35}, y_{i,s,t-364} \right]
+\end{equation}
+
+2. \textbf{Rolling Moving Averages}:
+\begin{equation}
+\bar{y}_{i,s,t,w} = \frac{1}{w} \sum_{k=7}^{7+w-1} y_{i,s,t-k} \quad \text{for } w \in \{7, 14, 28, 60, 90, 180, 365\}
+\end{equation}
+
+3. \textbf{Rolling Standard Deviations}:
+\begin{equation}
+\sigma_{i,s,t,w} = \sqrt{\frac{1}{w-1} \sum_{k=7}^{7+w-1} \left( y_{i,s,t-k} - \bar{y}_{i,s,t,w} \right)^2} \quad \text{for } w \in \{7, 14, 28, 60, 90\}
+\end{equation}
+
+4. \textbf{Exponentially Weighted Moving Averages (EWMA)}:
+\begin{equation}
+\text{EWMA}_{i,s,t,\alpha} = \alpha \sum_{k=0}^{\infty} (1-\alpha)^k y_{i,s,t-7-k} \quad \text{for } \alpha \in \{0.1, 0.3, 0.5\}
+\end{equation}
+
+5. \textbf{Inter-Period Trend Ratios}:
+\begin{equation}
+R_{i,s,t,w_1,w_2} = \frac{\bar{y}_{i,s,t,w_1} + \epsilon}{\bar{y}_{i,s,t,w_2} + \epsilon} \quad \text{for } (w_1, w_2) \in \{(7, 28), (7, 90), (28, 90)\}
+\end{equation}
+
+6. \textbf{Difference Features}:
+\begin{equation}
+D_{i,s,t,k} = y_{i,s,t-7} - y_{i,s,t-7-k} \quad \text{for } k \in \{1, 7, 364\}
+\end{equation}
+
+7. \textbf{Calendar Categorical Encoding}: Day-of-week, day-of-month, day-of-year, week-of-year, month, quarter, and weekend indicators encoded via sine-cosine cyclical transformations.
+
+8. \textbf{Out-of-Fold Target Encodings}: Store-level and item-level mean demand aggregated over historical training windows with smoothing parameter $\lambda = 10$.
+
+Ten automated leakage audit tests check feature timestamps, ensuring zero future target access across all 45 feature dimensions.
+
+\subsection{Direct Multi-Horizon XGBoost Architecture}
+Rather than using recursive autoregressive predictions, multi-horizon forecasting is formulated using seven decoupled direct Extreme Gradient Boosting (XGBoost) regressors $M_1, M_2, \dots, M_7$. Each model $M_h$ independently predicts sales for horizon $h \in \{1, 2, 3, 4, 5, 6, 7\}$ days ahead from origin $t$:
+
+The decoupled direct multi-horizon forecasting workflow across horizons $h=1\dots7$ is illustrated in Fig.~\ref{fig:multihorizon_workflow}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{}
+\caption{Decoupled direct multi-horizon forecasting architecture across horizons $h=1\dots7$.}
+\label{fig:multihorizon_workflow}
+\end{figure}
+
+As presented in Fig.~\ref{fig:multihorizon_workflow}, each model $M_h$ is independently trained on historical feature vectors $\mathbf{x}_{i,s,t}$ to predict target sales $y_{i,s,t+h}$.
+
+Formally, each model minimizes the squared error loss function:
+
+\begin{equation}
+\mathcal{L}(\mathbf{\Theta}_h) = \sum_{i,s,t \in T_{\text{train}}} \left( y_{i,s,t+h} - M_h(\mathbf{x}_{i,s,t}; \mathbf{\Theta}_h) \right)^2 + \gamma \Omega(\mathbf{\Theta}_h)
+\end{equation}
+
+where $\Omega(\mathbf{\Theta}_h) = \gamma_{\text{leaf}} T + \frac{1}{2} \lambda_{\text{L2}} \|\mathbf{w}\|^2$ is the tree complexity regularization term. 
+
+Models are trained with $N_{\text{trees}} = 500$, maximum tree depth $d_{\text{max}} = 6$, learning rate $\eta = 0.05$, sub-sample ratio $\eta_{\text{sample}} = 0.8$, and column sub-sample ratio $\eta_{\text{col}} = 0.8$. Cumulative lead-time demand $\hat{D}_{i,s,t,L}$ over supplier lead time $L \in \{1, 3, 5, 7\}$ days is aggregated directly:
+
+\begin{equation}
+\hat{D}_{i,s,t,L} = \sum_{h=1}^L \hat{y}_{i,s,t+h} = \sum_{h=1}^L M_h(\mathbf{x}_{i,s,t})
+\end{equation}
+
+\subsection{Out-of-Sample Residual Generation}
+To prevent data leakage during uncertainty calibration, nonconformity distributions must be derived from out-of-sample prediction errors. We populate an Out-of-Sample (OOS) calibration residual pool via 3-fold expanding-window cross-validation on the combined training and validation data ($2013-2016$).
+
+For each fold $k$, models $M_{h}^{(k)}$ are trained on historical split $T_{\text{train}}^{(k)}$ and generate predictions on holdout split $T_{\text{cal}}^{(k)}$. The out-of-sample residual $e_{i,s,t,h}$ for series $(i,s)$ on day $t$ at horizon $h$ is defined as:
+
+\begin{equation}
+e_{i,s,t,h} = y_{i,s,t+h} - \hat{y}_{i,s,t+h}^{(k)}
+\end{equation}
+
+This populates a calibration pool of $N_{\text{cal}} = 608,165$ multi-horizon residual observations. Cumulative lead-time error $e_{i,s,t,L}$ over lead time $L$ is:
+
+\begin{equation}
+e_{i,s,t,L} = D_{i,s,t,L} - \hat{D}_{i,s,t,L} = \sum_{h=1}^L y_{i,s,t+h} - \sum_{h=1}^L \hat{y}_{i,s,t+h}
+\end{equation}
+
+\subsection{Conformal Uncertainty Calibration Formulations}
+We implement and evaluate four distinct conformal calibration variants to construct non-parametric prediction intervals:
+
+1. \textbf{Raw Split Conformal Prediction (Raw CP)}: Nonconformity score equals absolute residual:
+\begin{equation}
+s_{i,s,t,L}^{\text{raw}} = |e_{i,s,t,L}| = |D_{i,s,t,L} - \hat{D}_{i,s,t,L}|
+\end{equation}
+
+2. \textbf{Trailing Scale-Normalized Conformal (Normalized CP)}: Nonconformity score scales by trailing 28-day standard deviation $\sigma_{i,s,t,28}$:
+\begin{equation}
+s_{i,s,t,L}^{\text{norm}} = \frac{|e_{i,s,t,L}|}{\sigma_{i,s,t,28} + \epsilon}
+\end{equation}
+
+3. \textbf{Rolling Forecast-Conditional Conformal (Forecast-Conditional CP)}: Nonconformity score scales directly by forecasted demand magnitude $\hat{D}_{i,s,t,L}$:
+\begin{equation}
+s_{i,s,t,L}^{\text{fc}} = \frac{|e_{i,s,t,L}|}{\hat{D}_{i,s,t,L} + \epsilon}
+\end{equation}
+
+4. \textbf{Locally Weighted Conformal (Locally Weighted CP)}: Nonconformity scores selected from the $K$ nearest historical calibration instances in point-forecast space:
+\begin{equation}
+\mathcal{N}_K(i,s,t) = \text{ArgMin}_{t' \in \mathcal{W}_W}^{(K)} |\hat{D}_{i,s,t,L} - \hat{D}_{i,s,t',L}|
+\end{equation}
+
+For target miscoverage level $\alpha \in (0, 1)$ (where nominal confidence level $1-\alpha = 0.90$), non-parametric quantile $q_{i,s,t,L}(1-\alpha)$ is computed over rolling window $\mathcal{W}_W$ of size $W=100$ days:
+
+\begin{equation}
+q_{i,s,t,L}(1-\alpha) = \text{Quantile} \left( \{ s_{i,s,t',L} \}_{t' \in \mathcal{W}_W}, \frac{\lceil (W+1)(1-\alpha) \rceil}{W} \right)
+\end{equation}
+
+The upper $1-\alpha$ prediction bound $\hat{U}_{i,s,t,L}(1-\alpha)$ for cumulative lead-time demand is derived as:
+
+\begin{equation}
+\hat{U}_{i,s,t,L}(1-\alpha) = \hat{D}_{i,s,t,L} + q_{i,s,t,L}(1-\alpha) \cdot \left( \hat{D}_{i,s,t,L} + \epsilon \right)
+\end{equation}
+
+Empirical coverage $\text{Cov}_{L}(1-\alpha)$ and mean Winkler score $\text{WS}_{L}(1-\alpha)$ are evaluated as:
+
+\begin{equation}
+\text{Cov}_{L}(1-\alpha) = \frac{1}{|T_{\text{test}}| \cdot M} \sum_{i,s} \sum_{t \in T_{\text{test}}} \mathbb{I} \left( y_{i,s,t,L} \le \hat{U}_{i,s,t,L}(1-\alpha) \right)
+\end{equation}
+
+\begin{equation}
+\text{WS}_{i,s,t,L}(1-\alpha) = (\hat{U} - \hat{L}) + \frac{2}{\alpha} (\hat{L} - y) \mathbb{I}(y < \hat{L}) + \frac{2}{\alpha} (y - \hat{U}) \mathbb{I}(y > \hat{U})
+\end{equation}
+
+\subsection{Calibration Robustness and Neighborhood Sensitivity}
+To evaluate parameter stability, calibration neighborhood size $K$ is swept across $K \in \{10, 20, 30, 40, 50, 60, 75, 100\}$ on validation data. The sensitivity sweep identified a broad performance plateau across $K \in [30, 100]$, where validation Winkler score varied by less than $0.67\%$. 
+
+Under our pre-registered stability rule, $K^*=100$ within sliding window $W=100$ was selected as the frozen configuration, maximizing sample size for non-parametric quantile estimation while preserving relative forecast scaling.
+
+\subsection{Temporal Distribution Shift Diagnostics}
+To quantify distribution shift between calibration ($2013-2016$) and out-of-sample test ($2017$) periods, we perform a location-scale statistical decomposition. 
+
+The two-sample Kolmogorov-Smirnov (KS) test statistic $D_{\text{KS}}$ evaluates overall distribution drift:
+
+\begin{equation}
+D_{\text{KS}} = \sup_{e} \left| F_{\text{cal}}(e) - F_{\text{test}}(e) \right|
+\end{equation}
+
+Scale expansion ratios for residual standard deviation ($R_{\sigma}$) and MAE ($R_{\text{MAE}}$) are defined as:
+
+\begin{equation}
+R_{\sigma, L} = \frac{\sigma\left( e_{\text{test}, L} \right)}{\sigma\left( e_{\text{cal}, L} \right)}, \quad R_{\text{MAE}, L} = \frac{\text{MAE}\left( e_{\text{test}, L} \right)}{\text{MAE}\left( e_{\text{cal}, L} \right)}
+\end{equation}
+
+Seasonal location drift is tracked via quarterly mean signed error $\text{MSE}_Q = \frac{1}{|Q|} \sum_{t \in Q} (y_t - \hat{y}_t)$.
+
+\subsection{Discrete-Event Inventory Replenishment Simulator}
+The inventory decision-support engine models a continuous-review order-up-to policy $(ROP, S)$ operating daily across all 500 store-item series over 365 test days under lost-sales dynamics.
+
+For each series $(i,s)$ on day $t$, the daily simulation follows an 8-step execution sequence:
+
+\begin{enumerate}
+    \item \textbf{Order Arrival Processing}: Outstanding orders scheduled for delivery on day $t$ arrive: On-Hand Inventory $I_t = I_{t-1} + Q_{\text{arriving}}$.
+    \item \textbf{Customer Demand Realization}: Daily customer demand $D_t = y_{i,s,t}$ occurs.
+    \item \textbf{Sales and Shortage Accounting}: 
+    \begin{align}
+    \text{Sales}_t &= \min(I_t, D_t) \\
+    \text{Shortage}_t &= \max(0, D_t - I_t) \quad (\text{Lost Sales}) \\
+    \text{Ending On-Hand } I_t^{\text{end}} &= I_t - \text{Sales}_t
+    \end{align}
+    \item \textbf{Inventory Position Calculation}: On-Order pipeline stock $O_t$ is updated:
+    \begin{equation}
+    IP_t = I_t^{\text{end}} + O_t
+    \end{equation}
+    \item \textbf{Reorder Point Sizing}: Dynamic Reorder Point $ROP_{t,L}$ is updated using forecast lead-time demand $\hat{D}_{t,L}$ and safety stock $SS_{t,L}$:
+    \begin{align}
+    \text{Deterministic Policy}: \quad ROP_{t,L}^{\text{det}} &= \hat{D}_{t,L} \\
+    \text{Uncertainty-Aware Policy}: \quad ROP_{t,L}^{\text{conf}} &= \hat{D}_{t,L} + SS_{t,L} = \hat{U}_{t,L}(1-\alpha)
+    \end{align}
+    where $SS_{t,L} = q_{t,L}(1-\alpha) \cdot (\hat{D}_{t,L} + \epsilon)$.
+    \item \textbf{Replenishment Trigger and Order Placement}: If $IP_t < ROP_{t,L}$, an order is triggered to raise inventory position to Order-Up-To level $S_t = ROP_{t,L}$:
+    \begin{equation}
+    Q_t = S_t - IP_t = ROP_{t,L} - IP_t
+    \end{equation}
+    \item \textbf{Lead-Time Pipeline Scheduling}: Order $Q_t$ enters pipeline delivery queue scheduled for arrival on day $t + L$.
+    \item \textbf{Holding Cost Accounting}: Daily holding cost is calculated on ending inventory $I_t^{\text{end}}$.
+\end{enumerate}
+
+\subsection{Financial Cost Accounting and Operational Metrics}
+Replenishment performance is evaluated across five operational and financial metrics:
+
+1. \textbf{Portfolio Demand-Weighted Fill Rate}:
+\begin{equation}
+\text{FR}_{\text{portfolio}} = \frac{\sum_{i,s} \sum_{t=1}^{365} \text{Sales}_{i,s,t}}{\sum_{i,s} \sum_{t=1}^{365} D_{i,s,t}}
+\end{equation}
+
+2. \textbf{Mean Series-Level Paired Fill Rate}:
+\begin{equation}
+\overline{\text{FR}}_{\text{series}} = \frac{1}{M} \sum_{i,s=1}^M \left( \frac{\sum_{t=1}^{365} \text{Sales}_{i,s,t}}{\sum_{t=1}^{365} D_{i,s,t}} \right)
+\end{equation}
+
+3. \textbf{Stockout Frequency}: Percentage of store-item days where $I_t^{\text{end}} = 0$ and $D_t > 0$.
+
+4. \textbf{Total Simulated Operating Cost}:
+\begin{equation}
+TC = C_{\text{order}} + C_{\text{holding}} + C_{\text{shortage}} = K_{\text{order}} \cdot N_{\text{orders}} + h \cdot \sum_{i,s,t} I_{i,s,t}^{\text{end}} + p \cdot \sum_{i,s,t} \text{Shortage}_{i,s,t}
+\end{equation}
+
+Financial parameters: Order placement cost $K_{\text{order}} = \$10.00/\text{order}$, daily inventory holding cost $h = \$0.20/\text{unit/day}$, baseline shortage penalty $p = \$1.00/\text{unit}$. Shortage cost sensitivity is evaluated across grid $p \in \{\$0.60, \$1.00, \$2.00, \$4.00\}$.
+
+\subsection{Inferential Statistical Protocol}
+Statistical significance of paired service and cost differences ($\Delta = X_{\text{conf}} - X_{\text{det}}$) across the 500 store-item series is assessed using the non-parametric paired Wilcoxon signed-rank test (two-sided $\alpha = 0.01$). 
+
+To construct non-parametric confidence intervals for fill rate improvements, we perform a 1,000-iteration paired percentile bootstrap resampling procedure across the 500 store-item time series, reporting 95\% bootstrap confidence intervals $[ \Delta_{0.025}, \Delta_{0.975} ]$.

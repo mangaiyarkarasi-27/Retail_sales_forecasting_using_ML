@@ -1,0 +1,58 @@
+Metric_Name,Section_Location,Value_In_Text,Source_Experiment,Provenance_Status,Verification_Notes
+Total Observations,Section 3.2,913000,EXP-011,VERIFIED_EXACT,5 years daily data across 500 store-item series
+Store-Item Series,Section 3.2,500,EXP-011,VERIFIED_EXACT,10 stores x 50 items
+Store Count,Section 3.2,10,EXP-011,VERIFIED_EXACT,Retail store locations
+Item SKU Count,Section 3.2,50,EXP-011,VERIFIED_EXACT,Item SKUs
+Train Set Count,Section 3.2,547500,EXP-011,VERIFIED_EXACT,2013-2015 (60% split)
+Val Set Count,Section 3.2,183000,EXP-011,VERIFIED_EXACT,2016 (20% split)
+Test Set Count,Section 3.2,182500,EXP-011,VERIFIED_EXACT,2017 (20% split)
+OOS Calibration Residual Pool,Section 3.5,608165,EXP-012,VERIFIED_EXACT,3-fold expanding window cross-validation pool
+Feature Dimension,Section 3.3,45,EXP-011,VERIFIED_EXACT,Engineered feature columns across 10 categories
+Minimum Lag Constraint,Section 3.3,>= 7 days,EXP-011,VERIFIED_EXACT,Decision-time safety availability boundary
+Validation Aggregate MAE,Section 4.1,6.0388,EXP-011,VERIFIED_EXACT,Aggregate MAE across horizons h=1..7
+Validation Aggregate RMSE,Section 4.1,7.8638,EXP-011,VERIFIED_EXACT,Aggregate RMSE across horizons h=1..7
+Validation Aggregate WAPE,Section 4.1,11.18%,EXP-011,VERIFIED_EXACT,Aggregate WAPE across horizons h=1..7
+Validation MAE h=1,Section 4.1,6.0373,EXP-011,VERIFIED_EXACT,Horizon 1 direct regressor M1
+Validation MAE h=2,Section 4.1,6.0427,EXP-011,VERIFIED_EXACT,Horizon 2 direct regressor M2
+Validation MAE h=3,Section 4.1,6.0336,EXP-011,VERIFIED_EXACT,Horizon 3 direct regressor M3
+Validation MAE h=4,Section 4.1,6.0396,EXP-011,VERIFIED_EXACT,Horizon 4 direct regressor M4
+Validation MAE h=5,Section 4.1,6.0366,EXP-011,VERIFIED_EXACT,Horizon 5 direct regressor M5
+Validation MAE h=6,Section 4.1,6.0285,EXP-011,VERIFIED_EXACT,Horizon 6 direct regressor M6
+Validation MAE h=7,Section 4.1,6.0518,EXP-011,VERIFIED_EXACT,Horizon 7 direct regressor M7
+Test Aggregate MAE,Section 4.1,7.64,EXP-011,VERIFIED_EXACT,2017 out-of-sample test aggregate MAE
+Test Aggregate RMSE,Section 4.1,10.12,EXP-011,VERIFIED_EXACT,2017 out-of-sample test aggregate RMSE
+Test Aggregate WAPE,Section 4.1,14.16%,EXP-011,VERIFIED_EXACT,2017 out-of-sample test aggregate WAPE
+Seasonal Naive Test MAE,Section 4.1,14.39,EXP-011,VERIFIED_EXACT,Seasonal naive 7-day baseline MAE
+MAE Reduction vs Naive,Section 4.1,-46.91%,EXP-011,VERIFIED_EXACT,XGBoost error reduction over naive baseline
+KS Statistic D (L=1..7),Section 4.2,0.1702 to 0.1974,EXP-014,VERIFIED_EXACT,Two-sample Kolmogorov-Smirnov test statistic
+KS Test p-value,Section 4.2,< 10^-42,EXP-014,VERIFIED_EXACT,Statistically significant non-exchangeability
+Std Dev Expansion R_sigma,Section 4.2,3.55x to 4.30x,EXP-014,VERIFIED_EXACT,2017 residual standard deviation expansion ratio
+MAE Expansion R_MAE,Section 4.2,3.76x to 4.58x,EXP-014,VERIFIED_EXACT,2017 residual MAE expansion ratio
+Q1 vs Q3 Signed Error Swing,Section 4.2,-18.84 to +20.95,EXP-014,VERIFIED_EXACT,Quarterly signed residual error shift (L=1)
+Raw Conformal Coverage,Section 4.3,17.90% to 29.37%,EXP-013,VERIFIED_EXACT,Empirical coverage on 2017 test holdout (90% nominal)
+Normalized Conformal Coverage,Section 4.3,15.23% to 25.54%,EXP-015,VERIFIED_EXACT,Empirical coverage of scale-normalized CP
+Forecast-Conditional Coverage,Section 4.3,18.91% to 31.98%,EXP-016,VERIFIED_EXACT,Empirical coverage of forecast-conditional CP
+Forecast-Conditional Winkler (L=1),Section 4.3,409.66,EXP-016,VERIFIED_EXACT,Mean Winkler score at L=1 (vs 432.15 Raw)
+Winkler Improvement p-value,Section 4.3,1.44e-28,EXP-016,VERIFIED_EXACT,Paired Wilcoxon test statistic for Winkler gain
+High-Demand Coverage Gain,Section 4.3,+8.80 pp,EXP-016,VERIFIED_EXACT,Top-decile high-demand regime coverage gain
+Validation K Sweep Plateau,Section 4.4,K in [30, 100] (< 0.67%),EXP-018,VERIFIED_EXACT,Winkler score stability plateau across K
+Frozen Calibration K*,Section 4.4,K* = 100,EXP-018,VERIFIED_EXACT,Frozen calibration neighborhood size (W=100)
+Portfolio Demand-Weighted Fill Rate (L=1),Section 4.5,46.87% -> 57.51% (+10.64 pp),EXP-019,VERIFIED_EXACT,Portfolio aggregate demand-weighted fill rate
+Mean Series-Level Paired Fill Rate (L=1),Section 4.5,55.28% -> 65.64% (+10.36 pp),EXP-019,VERIFIED_EXACT,Arithmetic mean of paired series fill rates
+Series Fill Rate 95% Bootstrap CI (L=1),Section 4.5,[+10.19 pp, +10.55 pp],EXP-019,VERIFIED_EXACT,1000-iteration paired bootstrap CI for L=1 series fill rate delta
+Fill Rate Gain Wilcoxon p-value,Section 4.5,p < 10^-75,EXP-019,VERIFIED_EXACT,Non-parametric significance of fill rate gain
+Stockout Rate Reduction (L=1),Section 4.5,67.24% -> 51.10% (-16.14 pp),EXP-019,VERIFIED_EXACT,Stockout frequency reduction at L=1
+Lost Sales Units Saved (L=1),Section 4.5,1139914 units (-20.03%),EXP-019,VERIFIED_EXACT,Annual unmet customer demand units saved
+Lost Sales Units Saved (L=7),Section 4.5,781570 units (-29.57%),EXP-019,VERIFIED_EXACT,Annual unmet customer demand units saved
+L=1 Total Cost Delta (p=$1.00),Section 4.6,-$790,834 (-10.83%),EXP-019,VERIFIED_EXACT,Annual net total operating cost reduction at L=1
+L=1 Cost Reduction Wilcoxon p-value,Section 4.6,p = 6.65e-55,EXP-019,VERIFIED_EXACT,Non-parametric significance of L=1 cost reduction
+L=1 Order Cost Delta,Section 4.6,-$53,520,EXP-019,VERIFIED_EXACT,Replenishment order batching overhead savings
+L=1 Holding Cost Delta,Section 4.6,+$402,600,EXP-019,VERIFIED_EXACT,Inventory holding cost increase from safety stock
+L=1 Shortage Cost Delta,Section 4.6,-$1,139,914,EXP-019,VERIFIED_EXACT,Financial savings from stockout reduction
+L=3 Total Cost Delta (p=$1.00),Section 4.6,+$294,553 (+5.99%),EXP-019,VERIFIED_EXACT,Multi-day cost difference under baseline penalty
+L=5 Total Cost Delta (p=$1.00),Section 4.6,+$711,678 (+16.83%),EXP-019,VERIFIED_EXACT,Multi-day cost difference under baseline penalty
+L=7 Total Cost Delta (p=$1.00),Section 4.6,+$846,796 (+22.25%),EXP-019,VERIFIED_EXACT,Multi-day cost difference under baseline penalty
+L=3 Cost Delta (p=$2.00),Section 4.7,-$515,118 (-6.58%),EXP-019,VERIFIED_EXACT,Net cost reduction under high penalty regime
+L=3 Cost Delta (p=$4.00),Section 4.7,-$2,371,534 (-17.02%),EXP-019,VERIFIED_EXACT,Net cost reduction under extreme penalty regime
+L=5 Cost Delta (p=$4.00),Section 4.7,-$1,099,802 (-10.22%),EXP-019,VERIFIED_EXACT,Net cost reduction under extreme penalty regime
+L=7 Cost Delta (p=$4.00),Section 4.7,-$1,497,914 (-13.62%),EXP-019,VERIFIED_EXACT,Net cost reduction under extreme penalty regime

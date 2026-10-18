@@ -1,0 +1,13 @@
+Metric,Value
+total_store_item_combinations,500.0
+series_with_zero_demand,1.0
+mean_coefficient_of_variation,0.2887
+mean_cv_squared,0.0839
+sbc_smooth_count,500.0
+sbc_erratic_count,0.0
+sbc_intermittent_count,0.0
+sbc_lumpy_count,0.0
+regime_standard_ml_count,1.0
+regime_seasonal_expert_count,499.0
+regime_trend_expert_count,0.0
+regime_robust_baseline_count,0.0

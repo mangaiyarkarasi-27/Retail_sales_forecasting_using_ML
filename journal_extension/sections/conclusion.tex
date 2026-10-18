@@ -1,0 +1,37 @@
+\section{Conclusion and Future Work}
+
+\subsection{Summary of the Study}
+Modern retail supply chain planning requires demand estimation systems that bridge accurate predictive forecasting with effective inventory replenishment execution. In enterprise retail environments, forecasting models are routinely trained under symmetric error objectives (such as Mean Absolute Error and Root Mean Squared Error) that optimize point accuracy but fail to communicate predictive dispersion or mitigate asymmetric stockout risks. Furthermore, temporal nonstationarity, seasonal phase shifts, and macroeconomic volatility degrade uncertainty calibration when predictive models are deployed in forward operational environments.
+
+To address these challenges, this study developed and evaluated an end-to-end empirical framework bridging leakage-free multi-horizon demand forecasting, rolling forecast-conditional conformal prediction, and continuous-review inventory simulation across 500 heterogeneous retail store-item time series over a 5-year longitudinal period ($2013-2017$).
+
+\subsection{Restatement of Key Empirical Findings}
+The empirical findings resolve the four primary research questions:
+
+\begin{enumerate}
+    \item \textbf{RQ1 (Multi-Horizon Forecasting Architecture)}: Under the decision-time-safe feature protocol ($\tau \ge 7$ days), seven decoupled direct XGBoost regressors ($M_1, \dots, M_7$) achieved stable validation accuracy across all horizons ($\text{MAE} \approx 6.04$, aggregate RMSE $\approx 7.86$). Decoupling horizon estimation eliminated recursive error compounding while satisfying ten automated leakage audit tests.
+    \item \textbf{RQ2 (Conformal Uncertainty Calibration Under Shift)}: On the 2017 test holdout, raw rolling conformal prediction experienced severe empirical under-coverage ($17.90\%-29.37\%$ at nominal $90\%$ confidence) driven by a $3.55\times$ to $4.30\times$ expansion in residual standard deviation and seasonal drift ($p < 10^{-42}$). Relative forecast-conditional scaling ($s = |e| / (\hat{D} + \epsilon)$) significantly improved interval efficiency, lowering mean Winkler loss to $409.66$ ($p = 1.44 \times 10^{-28}$) and boosting top-decile high-demand coverage by $+8.80$ percentage points, though nominal 90\% coverage was not fully restored.
+    \item \textbf{RQ3 (Operational Service and Shortage Performance)}: Translating forecast-conditional conformal bounds into replenishment safety stock ($ROP = \hat{D} + SS$) produced substantial fill rate gains across all lead times ($+10.64\text{ pp}$ portfolio demand-weighted fill rate at $L=1$, $46.87\%$ to $57.51\%$; $+10.36\text{ pp}$ mean series-level paired fill rate, 95\% bootstrap CI $[+10.19\text{ pp}, +10.55\text{ pp}]$, $p < 10^{-75}$). Conformal safety stock reduced lost sales volume by $20.03\%$ to $29.57\%$, saving up to $1.14$ million units of unmet demand annually.
+    \item \textbf{RQ4 (Economic Costs and Shortage Sensitivity)}: For single-day replenishment ($L=1$) under baseline shortage penalty $p=\$1.00$, conformal buffering reduced total annual operating costs by $-10.83\%$ (saving $\$790,834$, $p = 6.65 \times 10^{-55}$). At multi-day lead times ($L \ge 3$) under $p=\$1.00$, continuous safety stock holding costs exceeded shortage savings. However, under high shortage penalties ($p \ge \$2.00/\text{unit}$), conformal replenishment achieved lower total operating costs across all multi-day horizons (saving $\$515,118$ at $L=3, p=\$2.00$ and $\$2.37\text{M}$ at $L=3, p=\$4.00$).
+\end{enumerate}
+
+\subsection{Summary of Scientific Contributions}
+This journal manuscript provides five primary scientific, methodological, and empirical contributions:
+
+\begin{enumerate}
+    \item \textbf{Contribution 1}: A decision-time-safe direct multi-horizon forecasting protocol utilizing seven decoupled global XGBoost regressors ($M_1,\dots,M_7$) enforcing a minimum lag constraint of $\tau \ge 7$ days, eliminating recursive error compounding and ensuring zero look-ahead feature leakage.
+    \item \textbf{Contribution 2}: An empirical study of rolling forecast-conditional conformal calibration under forward distribution shift, proving that relative error scaling adapts intervals to volume heteroskedasticity and improves interval efficiency without claiming theoretical coverage guarantees under shift.
+    \item \textbf{Contribution 3}: A calibration-window robustness characterization across neighborhood sizes $K \in [10, 100]$, identifying a broad performance plateau ($K \in [30, 100]$ where Winkler loss varied by $<0.67\%$) and freezing $K^*=100$ under a predefined stability rule.
+    \item \textbf{Contribution 4}: An operational translation of forecast uncertainty into continuous-review replenishment safety stock ($ROP = \hat{D} + SS$), demonstrating in discrete-event simulation across 500 store-item series that conformal safety stock yields statistically significant fill rate gains and cuts lost sales shortages by up to $29.57\%$.
+    \item \textbf{Contribution 5}: A portfolio-level empirical cost-service characterization across four lead times and four shortage penalty regimes, providing inferential statistics (paired Wilcoxon tests and 1,000-iteration bootstrap CIs) that map the empirical cost-service trade-off frontier.
+\end{enumerate}
+
+\subsection{Future Research Directions}
+The findings suggest several promising avenues for future research:
+
+\begin{enumerate}
+    \item \textbf{Adaptive Conformal Calibration Under Explicit Drift Tracking}: Developing adaptive conformal calibration layers that incorporate online error feedback (such as adaptive conformal inference) or covariate-shift reweighting to track dynamic scale expansions.
+    \item \textbf{Multi-Dataset and Cross-Retailer Benchmarking}: Evaluating the end-to-end forecasting and replenishment framework across diverse empirical datasets, such as supermarket grocery series with promotional pricing and fast-fashion apparel time series.
+    \item \textbf{Deep Learning and Foundation Model Integration}: Benchmarking decoupled GBDTs against quantile regression neural networks, Temporal Fusion Transformers, and zero-shot pre-trained time-series foundation models within the same decision-time-safe simulation framework.
+    \item \textbf{Multi-Echelon and Stochastic Lead-Time Dynamics}: Extending the discrete-event simulation engine to incorporate stochastic supplier lead times, warehouse capacity constraints, and multi-echelon inventory allocation.
+\end{enumerate}

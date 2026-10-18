@@ -1,0 +1,11 @@
+Table_Number,Table_Label,Table_Caption,Data_Source,Placement_Section,Verification_Status
+Table 1,tab:conference_vs_journal,Methodological and Empirical Extension from Conference Baseline to Journal Study,JOURNAL-001 / EXP-020,Section 1.4,VERIFIED_EXACT
+Table 2,tab:forecasting_results,Multi-Horizon Forecasting Performance on 2016 Validation and 2017 Out-of-Sample Test Sets,EXP-011,Section 4.1,VERIFIED_EXACT
+Table 3,tab:shift_diagnostics,Two-Sample Distribution Shift Diagnostics Between Historical Calibration and 2017 Test Residuals,EXP-014,Section 4.2,VERIFIED_EXACT
+Table 4,tab:conformal_results,Conformal Prediction Uncertainty Calibration Comparison Across Methods on 2017 Test Set,EXP-013 / EXP-015 / EXP-016 / EXP-017,Section 4.3,VERIFIED_EXACT
+Table 5,tab:k_sensitivity,Robustness Analysis: Calibration Neighborhood Size (K) Sensitivity Sweep on Validation Set,EXP-018,Section 4.4,VERIFIED_EXACT
+Table 6,tab:inventory_service,Inventory Replenishment Service Level and Stockout Performance Comparison on 2017 Test Set,EXP-019,Section 4.5,VERIFIED_EXACT
+Table 7,tab:inventory_cost,Portfolio-Level Simulated Annual Operating Cost Breakdown (Baseline Shortage Penalty p = $1.00),EXP-019,Section 4.6,VERIFIED_EXACT
+Table 8,tab:shortage_sensitivity,Shortage Penalty Sensitivity Analysis: Net Annual Operating Cost Delta (Delta TC),EXP-019,Section 4.7,VERIFIED_EXACT
+Table 9,tab:statistical_testing,Inferential Statistical Hypothesis Tests on Service Levels and Total Operating Costs,EXP-019 / EXP-020,Section 4.8,VERIFIED_EXACT
+Table 10,tab:literature_matrix,Theoretical and Empirical Methodological Comparison Matrix with Existing Literature,LITERATURE_COMPARISON_TABLE.csv,Section 2.7,VERIFIED_EXACT

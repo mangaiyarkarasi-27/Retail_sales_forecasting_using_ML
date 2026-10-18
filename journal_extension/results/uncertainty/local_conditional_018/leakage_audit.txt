@@ -1,0 +1,13 @@
+EXP-018 TEMPORAL LEAKAGE AUDIT VERIFICATION
+==================================================
+Test 1 - Historical Forecast Isolation: PASSED (F_r,L uses only lag features <= r-1).
+Test 2 - Current Forecast Isolation: PASSED (F_t,L uses only lag features <= t-1).
+Test 3 - Historical Residual Eligibility: PASSED (Strictly enforced r + L < t).
+Test 4 - Current-Origin Error Exclusion: PASSED (Origin t outcome is never in calibration pool).
+Test 5 - Neighbor Selection Pool: PASSED (Selected strictly from eligible historical forecasts).
+Test 6 - 2017 Independence for K Selection: PASSED (K* selected strictly on 2016 validation data).
+Test 7 - 2017 Independence for Method Selection: PASSED (Method rules frozen prior to 2017 evaluation).
+Test 8 - Freezing of K* before 2017 Evaluation: PASSED (K* frozen in selected_k_018.txt).
+Test 9 - Calibration Window Constancy: PASSED (W=100 kept constant across all K configurations).
+Test 10 - Invariance of Score and Distance Formula: PASSED (Score S=|E|/max(F,eps), Dist=|F_r-F_t| unchanged).
+Audit Status: ALL 10 LEAKAGE TESTS PASSED.

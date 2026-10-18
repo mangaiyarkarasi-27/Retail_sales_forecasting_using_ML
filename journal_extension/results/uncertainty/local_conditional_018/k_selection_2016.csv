@@ -1,0 +1,2 @@
+selected_k,selection_metric,winkler_score_2016,coverage_error_2016,min_winkler_found,eligible_candidates_within_1pct
+100,lowest_aggregate_winkler_with_1pct_stability_tiebreaker,2099.3456,0.643,2087.5948,"[np.int64(75), np.int64(100), np.int64(50), np.int64(30)]"

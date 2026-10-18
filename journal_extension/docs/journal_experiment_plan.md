@@ -1,0 +1,1 @@
+# Journal Experiment Plan\n\nOutline of the planned experiments, including ablation studies, multi-model routing, and inventory simulations.\n

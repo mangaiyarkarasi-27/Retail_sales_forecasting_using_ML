@@ -1,0 +1,10 @@
+Metric,Value
+routed_to_xgboost,359.0
+routed_to_rf,141.0
+routing_accuracy,0.704
+balanced_accuracy,0.6031
+macro_f1,0.5688
+average_regret,0.0176
+average_selected_model_mae,6.1843
+average_selected_model_rmse,7.7921
+percentage_mae_improvement,-0.1543

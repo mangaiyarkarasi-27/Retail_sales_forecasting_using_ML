@@ -1,0 +1,19 @@
+# Configuration file for Journal Extension
+
+demand_profiling:
+  min_observations: 100
+  # SBC Classification thresholds:
+  # ADI > 1.32 implies intermittent/lumpy
+  # CV_sq > 0.49 implies erratic/lumpy
+  adi_threshold: 1.32
+  cv_sq_threshold: 0.49
+  
+  # Trend strength threshold (F-test or R2 of linear trend)
+  trend_threshold: 0.20
+  
+  # Seasonality strength threshold (autocorrelation lag-7 or lag-365)
+  seasonality_threshold: 0.30
+  
+  # Output file locations
+  profiles_output_path: "journal_extension/results/model_selection/demand_profiles.csv"
+  summary_output_path: "journal_extension/results/model_selection/demand_profile_summary.csv"

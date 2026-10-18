@@ -1,0 +1,4 @@
+Model_Strategy,Test_MAE,Test_RMSE,MAE_Improvement_pct
+Always_XGBoost,6.1748,8.0365,0.0
+Always_Random_Forest,6.2584,8.1515,-1.3552
+Adaptive_Router,6.1843,8.041,-0.1544

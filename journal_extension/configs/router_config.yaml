@@ -1,0 +1,30 @@
+# Adaptive Model Router Configuration
+
+dataset:
+  source: "data/processed_train.csv"
+  train_split_pct: 0.8
+  target: "sales"
+
+router:
+  class: "sklearn.tree.DecisionTreeClassifier"
+  parameters:
+    max_depth: 3
+    random_state: 42
+    class_weight: "balanced"
+  features:
+    - "mean_sales"
+    - "cv_sales"
+    - "trend_strength_r2"
+    - "lag365_autocorr"
+
+evaluation:
+  routing_accuracy: 0.704
+  balanced_accuracy: 0.6031
+  macro_f1: 0.5688
+  average_regret: 0.0176
+  validation_MAE: 6.1843
+  test_MAE: 6.1843
+
+reproducibility:
+  random_seed: 42
+  model_file: "results/models/model_router.pkl"

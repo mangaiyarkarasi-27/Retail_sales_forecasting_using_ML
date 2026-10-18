@@ -1,0 +1,67 @@
+Metric_Parameter,Experimental_Source,Exact_Value,Sections_Cited,Context_Description,Verification_Status
+Total Dataset Observations,EXP-011,913000,Section 1.3; Section 3.1; Section 4.1; Table 1,Total daily sales records across 5 years (2013-2017),VERIFIED_EXACT
+Store-Item Series Count,EXP-011,500,Section 1.1; Section 1.4; Section 3.1; Section 4.1; Section 5.1; Section 5.5.1,Heterogeneous SKU time series across 10 stores and 50 items,VERIFIED_EXACT
+Store Count,EXP-011,10,Section 1.1; Section 3.1; Section 4.1; Section 5.5.1,Number of distinct retail store locations,VERIFIED_EXACT
+Item Count,EXP-011,50,Section 1.1; Section 3.1; Section 4.1; Section 5.5.1,Number of distinct retail item SKUs,VERIFIED_EXACT
+Training Partition Observations,EXP-011,547500,Section 3.1; Section 4.1,Observations spanning 2013-01-01 to 2015-12-31 (60.0% of data),VERIFIED_EXACT
+Validation Partition Observations,EXP-011,183000,Section 3.1; Section 4.1,Observations spanning 2016-01-01 to 2016-12-31 (20.0% of data),VERIFIED_EXACT
+Test Partition Observations,EXP-011,182500,Section 3.1; Section 4.1,Observations spanning 2017-01-01 to 2017-12-31 (20.0% of data),VERIFIED_EXACT
+OOS Residual Pool Size (N),EXP-012,608165,Section 1.3; Section 1.5; Section 3.3; Section 4.1; Section 5.1; Table 1,Historical out-of-sample calibration residual count,VERIFIED_EXACT
+Feature Space Dimensionality,EXP-011,45,Section 3.2; Section 4.1,Number of engineered feature columns across 10 categories,VERIFIED_EXACT
+Minimum Lag Constraint,EXP-011,>= 7 days,Section 1.3; Section 1.5; Section 3.2; Section 4.2; Section 5.1; Table 1,Decision-time causality constraint preventing target leakage,VERIFIED_EXACT
+Automated Leakage Audit Checks,EXP-011,10 / 10 passed,Section 1.3; Section 3.2; Section 4.2; Section 5.2,Zero look-ahead feature leakage test criteria verified,VERIFIED_EXACT
+Validation Aggregate MAE,EXP-011,6.0388,Section 4.2; Section 5.2; Section 5.4; Table 2,Mean absolute error across all 7 horizons on 2016 validation,VERIFIED_EXACT
+Validation Aggregate RMSE,EXP-011,7.8638,Section 4.2; Section 5.2; Table 2,Root mean squared error across all 7 horizons on 2016 validation,VERIFIED_EXACT
+Validation Aggregate WAPE,EXP-011,11.18%,Section 4.2; Table 2,Weighted absolute percentage error on 2016 validation,VERIFIED_EXACT
+Validation Aggregate SMAPE,EXP-011,11.83%,Section 4.2; Table 2,Symmetric mean absolute percentage error on 2016 validation,VERIFIED_EXACT
+Validation MAE h=1,EXP-011,6.0373,Section 4.2; Table 2,Validation MAE for 1-day ahead XGBoost regressor M1,VERIFIED_EXACT
+Validation MAE h=2,EXP-011,6.0427,Section 4.2; Table 2,Validation MAE for 2-day ahead XGBoost regressor M2,VERIFIED_EXACT
+Validation MAE h=3,EXP-011,6.0336,Section 4.2; Table 2,Validation MAE for 3-day ahead XGBoost regressor M3,VERIFIED_EXACT
+Validation MAE h=4,EXP-011,6.0396,Section 4.2; Table 2,Validation MAE for 4-day ahead XGBoost regressor M4,VERIFIED_EXACT
+Validation MAE h=5,EXP-011,6.0366,Section 4.2; Table 2,Validation MAE for 5-day ahead XGBoost regressor M5,VERIFIED_EXACT
+Validation MAE h=6,EXP-011,6.0285,Section 4.2; Section 5.2; Table 2,Validation MAE for 6-day ahead XGBoost regressor M6,VERIFIED_EXACT
+Validation MAE h=7,EXP-011,6.0518,Section 4.2; Section 5.2; Table 2,Validation MAE for 7-day ahead XGBoost regressor M7,VERIFIED_EXACT
+Test Aggregate MAE,EXP-011,7.64,Section 4.2; Table 2,Out-of-sample 2017 test MAE across 500 series,VERIFIED_EXACT
+Test Aggregate RMSE,EXP-011,10.12,Section 4.2; Table 2,Out-of-sample 2017 test RMSE across 500 series,VERIFIED_EXACT
+Test Aggregate WAPE,EXP-011,14.16%,Section 4.2; Table 2,Out-of-sample 2017 test WAPE across 500 series,VERIFIED_EXACT
+Test Naive Baseline MAE,EXP-011,14.39,Section 4.2; Table 2,Seasonal naive 7-day baseline MAE on 2017 test,VERIFIED_EXACT
+Test Naive Baseline RMSE,EXP-011,18.92,Section 4.2; Table 2,Seasonal naive 7-day baseline RMSE on 2017 test,VERIFIED_EXACT
+Test Naive Baseline WAPE,EXP-011,26.65%,Section 4.2; Table 2,Seasonal naive 7-day baseline WAPE on 2017 test,VERIFIED_EXACT
+Forecasting Error Reduction vs Naive,EXP-011,-46.9% MAE (-46.5% RMSE),Section 4.2; Table 2,Direct XGBoost error reduction over seasonal naive baseline,VERIFIED_EXACT
+Residual Std Dev Expansion (L=1 to L=7),EXP-014,3.55x to 4.30x,Section 1.5; Section 4.3; Section 5.1; Section 5.2,Expansion ratio of 2017 test residual standard deviation vs calibration,VERIFIED_EXACT
+Residual MAE Expansion (L=1 to L=7),EXP-014,3.76x to 4.58x,Section 4.3; Section 5.2,Expansion ratio of 2017 test residual MAE vs calibration,VERIFIED_EXACT
+Kolmogorov-Smirnov D Statistic,EXP-014,0.170 to 0.197,Section 4.3; Table 3,Two-sample KS drift statistic across lead times L in {1,3,5,7},VERIFIED_EXACT
+Kolmogorov-Smirnov p-value,EXP-014,5.2e-43 to 3.6e-58,Section 4.3; Table 3,Statistical significance of calibration-to-test residual shift,VERIFIED_EXACT
+Quarterly Signed Error Swing (Q1 to Q3),EXP-014,-18.84 to +20.95 units,Section 4.3; Section 5.2; Figure 3,Mean signed residual shift showing winter under-prediction to summer over-prediction,VERIFIED_EXACT
+Raw Conformal Coverage 90% (L=1..7),EXP-013,17.90% to 29.37%,Section 4.4; Section 5.2; Table 4,Empirical coverage of unscaled rolling conformal prediction on 2017 test,VERIFIED_EXACT
+Trailing Normalized Coverage 90% (L=1..7),EXP-015,15.23% to 25.54%,Section 4.4; Section 5.2; Table 4,Empirical coverage of trailing scale-normalized conformal prediction on 2017 test,VERIFIED_EXACT
+Forecast-Conditional Coverage 90% (L=1..7),EXP-016,18.91% to 31.98%,Section 4.4; Section 5.2; Table 4,Empirical coverage of forecast-conditional conformal prediction on 2017 test,VERIFIED_EXACT
+Forecast-Conditional Winkler Score (L=1, 90%),EXP-016,409.66,Section 4.4; Section 5.2; Table 4,Mean Winkler interval loss on 2017 test (vs 432.15 Raw, p = 1.44e-28),VERIFIED_EXACT
+High-Demand Regime Coverage Gain,EXP-016,+8.80 pp,Section 1.5; Section 4.4; Table 4,Coverage improvement of Forecast-Conditional over Raw in top decile demand,VERIFIED_EXACT
+Robustness Stability Plateau,EXP-018,K in [30, 100] (< 0.67% var),Section 1.5; Section 4.5; Section 5.2; Section 5.3; Table 5,Validation Winkler score variation across calibration neighborhood sizes,VERIFIED_EXACT
+Frozen Calibration Neighborhood (K*),EXP-018,K* = 100,Section 1.3; Section 3.6; Section 4.5; Section 5.1; Section 5.3; Table 1; Table 5,Frozen rolling calibration pool size per series (W=100 days),VERIFIED_EXACT
+Demand-Weighted Fill Rate L=1,EXP-019,46.87% -> 57.51% (+10.64 pp),Section 1.5; Section 4.6; Section 5.2; Table 6,Portfolio aggregate demand-weighted fill rate improvement at L=1,VERIFIED_EXACT
+Demand-Weighted Fill Rate L=3,EXP-019,65.26% -> 73.96% (+8.70 pp),Section 4.6; Section 5.2; Table 6,Portfolio aggregate demand-weighted fill rate improvement at L=3,VERIFIED_EXACT
+Demand-Weighted Fill Rate L=5,EXP-019,71.35% -> 79.31% (+7.95 pp),Section 4.6; Section 5.2; Table 6,Portfolio aggregate demand-weighted fill rate improvement at L=5,VERIFIED_EXACT
+Demand-Weighted Fill Rate L=7,EXP-019,75.36% -> 82.64% (+7.29 pp),Section 4.6; Section 5.2; Table 6,Portfolio aggregate demand-weighted fill rate improvement at L=7,VERIFIED_EXACT
+Mean Series-Level Paired Fill Rate L=1,EXP-019,55.28% -> 65.64% (+10.36 pp),Section 4.6; Section 5.2; Table 6,Arithmetic mean of paired series-level fill rate improvement at L=1,VERIFIED_EXACT
+Series Fill Rate Bootstrap 95% CI (L=1),EXP-019,[+10.19 pp, +10.55 pp],Section 4.6; Section 5.2; Table 6,1000-iteration paired bootstrap 95% confidence interval for L=1 series fill rate delta,VERIFIED_EXACT
+Fill Rate Paired Wilcoxon p-value,EXP-019,p < 10^-75,Section 1.5; Section 4.6; Section 5.2; Section 5.3; Table 6,Non-parametric statistical significance of fill rate improvements across all lead times,VERIFIED_EXACT
+Stockout Frequency Reduction L=1,EXP-019,67.24% -> 51.10% (-16.14 pp),Section 4.6; Table 6,Percentage of simulated store-item days experiencing stockouts at L=1,VERIFIED_EXACT
+Lost Sales Units Prevented L=1,EXP-019,1139914 units (-20.03%),Section 1.5; Section 4.6; Section 5.2; Table 6,Annual unmet customer demand units prevented across portfolio at L=1,VERIFIED_EXACT
+Lost Sales Units Prevented L=3,EXP-019,1034032 units (-24.96%),Section 4.6; Table 6,Annual unmet customer demand units prevented across portfolio at L=3,VERIFIED_EXACT
+Lost Sales Units Prevented L=5,EXP-019,903102 units (-27.97%),Section 4.6; Table 6,Annual unmet customer demand units prevented across portfolio at L=5,VERIFIED_EXACT
+Lost Sales Units Prevented L=7,EXP-019,781570 units (-29.57%),Section 4.6; Section 5.2; Table 6,Annual unmet customer demand units prevented across portfolio at L=7,VERIFIED_EXACT
+Average On-Hand Inventory L=1,EXP-019,18.24 -> 24.38 units (+6.14 units),Section 4.6; Table 6,Portfolio average daily on-hand inventory units per store-item at L=1,VERIFIED_EXACT
+Total Simulated Cost L=1 (p=$1.00),EXP-019,$7303426 -> $6512592 (-$790834),Section 1.5; Section 4.8; Section 5.2; Table 7,Net annual operational cost reduction (-10.83%) at L=1, baseline shortage penalty,VERIFIED_EXACT
+Cost Reduction Paired Wilcoxon p-value,EXP-019,p = 6.65e-55,Section 1.5; Section 4.8; Section 5.2; Table 7,Non-parametric statistical significance of L=1 total cost reduction,VERIFIED_EXACT
+L=1 Order Cost Savings,EXP-019,$281420 -> $227900 (-$53520),Section 4.8; Table 7,Replenishment order placement overhead reduction from order batching at L=1,VERIFIED_EXACT
+L=1 Holding Cost Increase,EXP-019,$1331864 -> $1734464 (+$402600),Section 4.8; Table 7,Increased inventory holding cost from dynamic safety stock at L=1,VERIFIED_EXACT
+L=1 Shortage Cost Savings,EXP-019,$5690142 -> $4550228 (-$1139914),Section 4.8; Table 7,Financial savings from reduced stockout volume at L=1, baseline penalty,VERIFIED_EXACT
+Total Simulated Cost L=3 (p=$1.00),EXP-019,$4917215 -> $5211768 (+$294553),Section 4.8; Section 5.2; Table 7,Cost difference (+5.99%) at L=3, baseline penalty p=$1.00,VERIFIED_EXACT
+Total Simulated Cost L=5 (p=$1.00),EXP-019,$4228840 -> $4940518 (+$711678),Section 4.8; Section 5.2; Table 7,Cost difference (+16.83%) at L=5, baseline penalty p=$1.00,VERIFIED_EXACT
+Total Simulated Cost L=7 (p=$1.00),EXP-019,$3805432 -> $4652228 (+$846796),Section 4.8; Section 5.2; Table 7,Cost difference (+22.25%) at L=7, baseline penalty p=$1.00,VERIFIED_EXACT
+High Penalty Cost Savings L=3 (p=$2.00),EXP-019,-$515118 (-6.58%),Section 1.5; Section 4.9; Section 5.2; Table 8,Net total cost reduction under high penalty regime at L=3,VERIFIED_EXACT
+High Penalty Cost Savings L=3 (p=$4.00),EXP-019,-$2371534 (-17.02%),Section 1.5; Section 4.9; Section 5.2; Table 8,Net total cost reduction under extreme penalty regime at L=3,VERIFIED_EXACT
+High Penalty Cost Savings L=5 (p=$4.00),EXP-019,-$1099802 (-10.22%),Section 1.5; Section 4.9; Section 5.2; Table 8,Net total cost reduction under extreme penalty regime at L=5,VERIFIED_EXACT
+High Penalty Cost Savings L=7 (p=$4.00),EXP-019,-$1497914 (-13.62%),Section 4.9; Table 8,Net total cost reduction under extreme penalty regime at L=7,VERIFIED_EXACT

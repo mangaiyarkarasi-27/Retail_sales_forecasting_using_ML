@@ -1,0 +1,8 @@
+EXP-019 FORECAST AVAILABILITY & TEMPORAL AUDIT
+==================================================
+1. Direct XGBoost Models: Frozen EXP-011 models (h=1..7) trained strictly on 2013-2015.
+2. Feature Pipeline: All lag features >= 7 days; zero sales from [t, t+L] enter feature vectors.
+3. Conformal Calibration Pool: Residuals satisfy strict temporal eligibility r <= t - L - 1.
+4. Conformal Quantile Computation: Extracted strictly from eligible OOS residuals (W=100, K*=100).
+5. Safety Margin: Multiplies decision-time normalized quantile by point forecast Dhat_{t,L}.
+Audit Status: ZERO LOOK-AHEAD DETECTED IN INVENTORY DECISION LAYER.
