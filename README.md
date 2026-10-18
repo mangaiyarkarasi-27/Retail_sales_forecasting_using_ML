@@ -114,5 +114,5 @@ streamlit run dashboard/app.py
 
 ---
 
-## 👥 Authors
-- **M.Tech Project Candidate**
+## 👥 Author
+- **MANGAIYARKARASI RAMESH**
